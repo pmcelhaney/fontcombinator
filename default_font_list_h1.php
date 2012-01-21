@@ -5,6 +5,7 @@ $systemFontArr = array(
 	'Garamond',
 	'Georgia',
 	'Helvetica',
+	'Impact',
 	'Lucida Grande',
 	'Palatino',
 	'Tahoma',

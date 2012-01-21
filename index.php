@@ -15,78 +15,81 @@ ini_set('display_errors', 'on');
 	<title>The Web Font Combinator</title>
 	
 	<style type="text/css" media="screen">
+	* {
+		margin: 0;
+		padding: 0;
+		font-weight: regular;
+	}
+	
 	h1 {
 		font-size: 30px;
+		font-size: regular;
+		<?php
+		if(isset($_GET['h1'])){ 
+		   	 echo 'font-family: ' . $_GET['h1'] . ';';	 
+		    }
+		if(isset($_GET['h1size'])){ 
+			   	 echo 'font-size: ' . $_GET['h1size'] . 'px;';	 
+			    }
+			
+		if(isset($_GET['h1w'])){ 
+			   	 echo 'font-weight: ' . $_GET['h1w'] . ';';	 
+			    }
+		if(isset($_GET['h1s'])){ 
+			   	 echo 'font-style: ' . $_GET['h1s'] . ';';	 
+			    }
+	
+		if(isset($_GET['h1color'])){ 
+			   	 echo 'color: #' . $_GET['h1color'] . ';';	 
+			    }
+		?>
 	}
 	
 	h2 {
 		font-size: 20px;
+		<?php
+		if(isset($_GET['h2'])){ 
+		   	 echo 'font-family: ' . $_GET['h2'] . ';';	 
+		    }
+		if(isset($_GET['h2size'])){ 
+	   	 echo 'font-size: ' . $_GET['h2size'] . 'px;';	 
+	    }
+	
+		if(isset($_GET['h2color'])){ 
+				echo 'color: #' . $_GET['h2color'] . ';';	 
+			}
+		?>
 	}
 	
 	p {
 		font-size: 16px;
 		line-height: 1.4;
-	}
-	
-    <?php 
-	if(isset($_GET['h1'])){ 
-	   	 echo 'h1 { font-family: ' . $_GET['h1'] . ';}';	 
-	    }
-	if(isset($_GET['h1size'])){ 
-		   	 echo 'h1 { font-size: ' . $_GET['h1size'] . 'px;}';	 
-		    }
-	
-	if(isset($_GET['h1color'])){ 
-			   	 echo 'h1 { color: #' . $_GET['h1color'] . ';}';	 
-			    }
-	
-	
-	if(isset($_GET['h2'])){ 
-	   	 echo 'h2 { font-family: ' . $_GET['h2'] . ';}';	 
-	    }
-	if(isset($_GET['h2size'])){ 
-   	 echo 'h2 { font-size: ' . $_GET['h2size'] . 'px;}';	 
-    }
-	
-	if(isset($_GET['h1color'])){ 
-			echo 'h2 { color: #' . $_GET['h2color'] . ';}';	 
-		}
-	
-	
-	
+		<?php
 		if(isset($_GET['p'])){ 
-		   	 echo 'p { font-family: ' . $_GET['p'] . ';}';	 
+		   	 echo 'font-family: ' . $_GET['p'] . ';';	 
 		    }
 		if(isset($_GET['h2size'])){ 
-	   	 echo 'p { font-size: ' . $_GET['psize'] . 'px;}';	 
+	   	 echo 'font-size: ' . $_GET['psize'] . 'px;';	 
 	    }
 	
 		if(isset($_GET['pcolor'])){ 
-				echo 'p { color: #' . $_GET['pcolor'] . ';}';	 
+				echo 'color: #' . $_GET['pcolor'] . ';';	 
 			}
 
-			if(isset($_GET['plh'])){ 
-					echo 'p { line-height: ' . $_GET['plh'] . ';}';	 
-				}
-	
-	
-	?>
-
-	</style>
-	
-	
+		if(isset($_GET['plh'])){ 
+				echo 'line-height: ' . $_GET['plh'] . ';';	 
+			}
+		?>
+	}
+	</style>	
 </head>
-
 <body>
-	
-
-		
 	
 	<form action="index.php" method="get" accept-charset="utf-8">
 
 
 		<section id="h1_sec">
-			<h1 id="the_web_font_combinator">The Web Font Combinator</h1>
+			<h1 id="the_web_font_combinator" contenteditable="true">The Web Font Combinator</h1>
 			<select name="h1" id="h1_select">
 				<?php 
 					include 'default_font_list_h1.php';
@@ -96,10 +99,15 @@ ini_set('display_errors', 'on');
 			<input type="number" name="h1size" value="<?php if(isset($_GET['h1size'])) {echo $_GET['h1size']; } else { echo '30'; } ?>"  id="h1size" />px
 			<label for="h1w">Weight:</label>
 			<select name="h1w" id="h1w">
-				<option value="300">300</option>
 				<option value="regular">Regular</option>
 				<option value="bold">Bold</option>
 			</select>
+			<label for="h1s">Style:</label>
+			<select name="h1s" id="h1s">
+				<option value="normal">Normal</option>
+				<option value="italic">Italic</option>
+			</select>
+			
 
 
 			<label for="h1color">Color:</label>
