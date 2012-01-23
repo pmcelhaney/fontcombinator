@@ -14,6 +14,10 @@ ini_set('display_errors', 'on');
 
 	<title>The Web Font Combinator</title>
 	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script> 
+
+	<script src="javascript/ajax.js" type="text/javascript" charset="utf-8"></script>
+	
 	<style type="text/css" media="screen">
 	h1 {
 		font-size: 30px;
