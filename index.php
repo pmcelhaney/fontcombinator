@@ -16,7 +16,8 @@ ini_set('display_errors', 'on');
 	
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script> 
 
-	<script src="javascript/ajax.js" type="text/javascript" charset="utf-8"></script>
+	<script src="javascript/fc_functions.js" type="text/javascript" charset="utf-8"></script>
+	
 	
 	<style type="text/css" media="screen">
 	h1 {
@@ -135,7 +136,7 @@ ini_set('display_errors', 'on');
 			
 			
 		</section>
-		<input type="submit" name="Submit" value="Submit" id="Submit" />
+		<input type="submit"  id="submit" />
 			
 	</form>
 </body>
