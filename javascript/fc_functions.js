@@ -64,7 +64,7 @@ $(document).ready(function() {
 	function onJson(data){
 		if(data.kind === "webfonts#webfontList"){
 			getFonts(data.items);
-			changeFonts(data);
+			changeFonts(data.items);
 		} else {
 			noLove();
 		}
@@ -108,14 +108,12 @@ $(document).ready(function() {
 			var base = "http://fonts.googleapis.com/css?family=";
 			var fontName = $(this).val();
 			$('<link rel="stylesheet" href="' + base + fontName.replace(/\s+/g, '+') +'&subset=latin" />').appendTo('head');
-			// for (var i=0; i < fontList.length; i++) {
-			// 	if(fontList[i].family == fontName){
-			// 		console.log(fontList[i].variants);
-			// 	}
-			// };
-			// console.log(fontList);
-			console.log(fontName);
-			console.log(fontList.items.indexOf('Actor'));
+			for (var i=0; i < fontList.length; i++) {
+				if(fontList[i].family == fontName){
+					console.log(fontList[i].variants);
+				}
+			};
+
 		});
 		
 	}
