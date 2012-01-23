@@ -2,14 +2,7 @@ console.log('is this thing on?');
 
 	//$(document).ready(function($) {
 
-		//*/
-		// function renderFontList(fonts) {
-		// 		var template = "<option class='font' style='font-family:%name%'><h3>%name%</h3></option>",
-		// 		variantsTemplate = "<li style='%style%'>%variant%</li>",
-		// 		variantsList = "",
-		// 		specimenUrlPrefix = "http://www.google.com/webfonts/specimen/",
-		// 		html = "",
-		// 		fontData;
+
 		// 
 		// 	$.each(fonts, function(i, val) {
 		// 		variantsList = "";
@@ -63,7 +56,6 @@ $(document).ready(function() {
 	$.ajax({
 		url: 'https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyAc3a2WfPaSbA1B25u78zFQRfAide8T34c&sort=alpha&sort=desc',
 		dataType: 'jsonp',
-		//jsonp: 'onJson()',
 		success: onJson,
 		error: noLove
 	});
@@ -72,6 +64,7 @@ $(document).ready(function() {
 	function onJson(data){
 		if(data.kind === "webfonts#webfontList"){
 			getFonts(data.items);
+			changeFonts(data);
 		} else {
 			noLove();
 		}
@@ -87,20 +80,21 @@ $(document).ready(function() {
 	function getFonts(fontList){
 		var base = "http://fonts.googleapis.com/css?family=";
 		var defaultList = $('#h1_select').children();
-		console.log(defaultList);
-		
 		$(targets).empty();
 		$(targets).append('<option disabled>*** Google Fonts ***</option>');
 		for (var i=0; i < fontList.length; i++) {
-			//this tool is for latin fonts only so far - sorry, cyrellic and greek
+			//this tool is for latin fonts only so far - sorry, Cyrillic and Greek
 			if(fontList[i].subsets.indexOf('latin') != -1){
 				var fontName = fontList[i].family;
 				var fontCallName = fontList[i].family.replace(/\s+/g, '+');
 				var fontNameLetters = fontList[i].family.replace(/\s+/g, '');
+				//this adds the stylesheet link to Google Web Fonts, but with only the font's name as a subset of characters
 				$('<link rel="stylesheet" href="' + base + fontCallName +'&subset=latin&text=' + fontNameLetters +'" />').appendTo('head');
 				$(targets).append('<option value="'+ fontName +'">'+ fontName +'</option>');
 			}
 		};
+		
+		//readding the default font list so it appears at the end of the <select> and everything is ordered properly
 		$(targets).append('<option disabled>*** System Fonts ***</option>');
 		$(targets).append(defaultList);
 	}
@@ -108,9 +102,24 @@ $(document).ready(function() {
 	// hiding submit button when JS is present
 	$('#submit').hide();
 	
-	$(targets).change(function(){
+	function changeFonts(fontList){
+		$(targets).change(function(){
+			console.log('font has changed');
+			var base = "http://fonts.googleapis.com/css?family=";
+			var fontName = $(this).val();
+			$('<link rel="stylesheet" href="' + base + fontName.replace(/\s+/g, '+') +'&subset=latin" />').appendTo('head');
+			// for (var i=0; i < fontList.length; i++) {
+			// 	if(fontList[i].family == fontName){
+			// 		console.log(fontList[i].variants);
+			// 	}
+			// };
+			// console.log(fontList);
+			console.log(fontName);
+			console.log(fontList.items.indexOf('Actor'));
+		});
 		
-	});
+	}
+
 	
 });
 
