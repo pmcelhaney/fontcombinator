@@ -109,7 +109,7 @@ $(document).ready(function() {
 	$('#submit').hide();
 	
 	$(targets).change(function(){
-		alert('yay');
+		
 	});
 	
 });
