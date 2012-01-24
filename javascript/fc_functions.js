@@ -1,9 +1,5 @@
 $(document).ready(function() {
-	
 	var targets = '#h1_select, #h2_select, #p_select';  //these are used throughout
-	
-	
-	
 	// ajax call
 	$.ajax({
 		url: 'https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyAc3a2WfPaSbA1B25u78zFQRfAide8T34c&sort=alpha&sort=desc',
@@ -41,7 +37,7 @@ $(document).ready(function() {
 				var fontCallName = fontList[i].family.replace(/\s+/g, '+');
 				var fontNameLetters = fontList[i].family.replace(/\s+/g, '');
 				//this adds the stylesheet link to Google Web Fonts, but with only the font's name as a subset of characters, for performance
-				$('<link rel="stylesheet" href="' + base + fontCallName +'&subset=latin&text=' + fontNameLetters +'" />').appendTo('head');
+				$('<link rel="stylesheet" href="' + base + fontCallName +'&subset=latin&text=' + fontNameLetters +'"  type="text/css" />').appendTo('head');
 				$(targets).append('<option value="'+ fontName +'">'+ fontName +'</option>');
 			}
 		};
@@ -72,7 +68,7 @@ $(document).ready(function() {
 				if(fontList[i].family == fontName && variants.length > 1){
 					var variantCall = variants.toString();
 					//adding stylesheet call with all variants
-					$('<link rel="stylesheet" href="' + base + fontName.replace(/\s+/g, '+') +':' + variantCall + '&subset=latin" />').appendTo('head');
+					$('<link rel="stylesheet" href="' + base + fontName.replace(/\s+/g, '+') +':' + variantCall + '&subset=latin" type="text/css" />').appendTo('head');
 					//create a drop down menu
 					$('<select class="variant_select" id="'+ elem +'_variant" name="'+ elem +'v"><select>').insertAfter(this);
 					for (var i=0; i < variants.length; i++) {
@@ -84,17 +80,22 @@ $(document).ready(function() {
 				} else if(fontList[i].family == fontName){
 					//do something else when there is only one variant
 					//adding plain stylesheet call w/ no variant addendum
-					$('<link rel="stylesheet" href="' + base + fontName.replace(/\s+/g, '+') +'&subset=latin" />').appendTo('head');
+					$('<link rel="stylesheet" href="' + base + fontName.replace(/\s+/g, '+') +'&subset=latin" type="text/css"  />').appendTo('head');
 				}
 			}; //end of variant for loop
 			$(elem).css('font-family', fontName);
 
 		});// end of targets change
 	}  //end of function changeFonts
-
-	$('.variant_select').change(function(){
+	
+	
+	function variantChange(){
+		$('form').on("click",'.variant_selector',function(){
+			console.log('variant was chosen');
+		}); //end of variant_select change
 		
-	}); //end of variant_select change
+	};
+
 	
 });
 
