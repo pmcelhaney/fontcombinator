@@ -54,12 +54,13 @@ $(document).ready(function() {
 		$(targets).change(function(){
 			//gets rid of any variant drop down added previously
 			$(this).siblings('.variant_select').remove();
+			
 			var base = "http://fonts.googleapis.com/css?family=";
 			var fontName = $(this).val();
 			
 			//handy way to target the right element based on which select changed
 			var elem = $(this).attr('id').split('_select')[0];
-			
+			$(elem).css('font-style', 'normal');
 			
 			//this for loop adding variants based on which font is selected
 			for (var i=0; i < fontList.length; i++) {
@@ -67,15 +68,28 @@ $(document).ready(function() {
 				//checking to see if the selected font has more than one variant 
 				if(fontList[i].family == fontName && variants.length > 1){
 					var variantCall = variants.toString();
+					console.log(variants);
 					//adding stylesheet call with all variants
 					$('<link rel="stylesheet" href="' + base + fontName.replace(/\s+/g, '+') +':' + variantCall + '&subset=latin" type="text/css" />').appendTo('head');
 					//create a drop down menu
 					$('<select class="variant_select" id="'+ elem +'_variant" name="'+ elem +'v"><select>').insertAfter(this);
 					for (var i=0; i < variants.length; i++) {
 						var variantName = variants[i].replace('italic',' italic');
-						$('<option value="'+variantName+'">'+variantName+'</option>').appendTo('#' + elem +'_variant');
+						//special handling of variants results
+						if(variantName == 'regular'){
+							$('<option value="400" selected>400</option>').appendTo('#' + elem +'_variant');
+						} else if (variantName == '400'){
+							$('<option value="'+variantName+'" selected>'+variantName+'</option>').appendTo('#' + elem +'_variant');
+						} else if (variantName == ' italic'){
+							$('<option value="400 italic">400 italic</option>').appendTo('#' + elem +'_variant');
+						} else {
+							$('<option value="'+variantName+'">'+variantName+'</option>').appendTo('#' + elem +'_variant');
+						}	
 					};
-					$(elem).css('font-family', fontName);
+
+					$(elem).css('font-family', fontName).css('font-weight', '400');
+					
+					
 					return false;  //had to throw this in to stop infinite loop
 				} else if(fontList[i].family == fontName){
 					//do something else when there is only one variant
