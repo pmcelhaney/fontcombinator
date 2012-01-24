@@ -90,12 +90,20 @@ $(document).ready(function() {
 	
 	
 	function variantChange(){
-		$('form').on("click",'.variant_selector',function(){
-			console.log('variant was chosen');
+		$('body').on('change','.variant_select',function(){
+			var elem = $(this).attr('id').split('_variant')[0];
+			var variant = $(this).val();
+			if(variant.indexOf(' italic') == -1){
+				$(elem).css('font-weight',variant);
+				$(elem).css('font-style','normal');
+			} else {
+				$(elem).css('font-weight', variant.replace(' italic',''));
+				$(elem).css('font-style','italic');
+			}
 		}); //end of variant_select change
 		
 	};
-
+	variantChange();
 	
 });
 
