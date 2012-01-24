@@ -37,12 +37,12 @@ ini_set('display_errors', 'on');
 			   	 echo 'font-size: ' . $_GET['h1size'] . 'px;';	 
 			    }
 			
-		if(isset($_GET['h1w'])){ 
-			   	 echo 'font-weight: ' . $_GET['h1w'] . ';';	 
-			    }
-		if(isset($_GET['h1s'])){ 
-			   	 echo 'font-style: ' . $_GET['h1s'] . ';';	 
-			    }
+		// if(isset($_GET['h1w'])){ 
+		// 	   	 echo 'font-weight: ' . $_GET['h1w'] . ';';	 
+		// 	    }
+		// if(isset($_GET['h1s'])){ 
+		// 	   	 echo 'font-style: ' . $_GET['h1s'] . ';';	 
+		// 	    }
 	
 		if(isset($_GET['h1color'])){ 
 			   	 echo 'color: #' . $_GET['h1color'] . ';';	 
@@ -86,6 +86,10 @@ ini_set('display_errors', 'on');
 			}
 		?>
 	}
+	
+	select.variant_select {
+		text-transform: capitalize;
+	}
 	</style>	
 </head>
 <body>
@@ -102,18 +106,6 @@ ini_set('display_errors', 'on');
 			</select>
 			<label for="h1size">Size:</label>
 			<input type="number" name="h1size" value="<?php if(isset($_GET['h1size'])) {echo $_GET['h1size']; } else { echo '30'; } ?>"  id="h1size" />px
-			<label for="h1w">Weight:</label>
-			<select name="h1w" id="h1w">
-				<option value="regular">Regular</option>
-				<option value="bold">Bold</option>
-			</select>
-			<label for="h1s">Style:</label>
-			<select name="h1s" id="h1s">
-				<option value="normal">Normal</option>
-				<option value="italic">Italic</option>
-			</select>
-			
-
 
 			<label for="h1color">Color:</label>
 			<input type="text" name="h1color" value="<?php if(isset($_GET['h1color'])) {echo $_GET['h1color']; } ?>" placeholder="000000" id="h1color" />

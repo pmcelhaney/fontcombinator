@@ -104,13 +104,29 @@ $(document).ready(function() {
 	
 	function changeFonts(fontList){
 		$(targets).change(function(){
+			$(this).siblings('.variant_select').remove();
 			console.log('font has changed');
 			var base = "http://fonts.googleapis.com/css?family=";
 			var fontName = $(this).val();
-			$('<link rel="stylesheet" href="' + base + fontName.replace(/\s+/g, '+') +'&subset=latin" />').appendTo('head');
+			
+			//handy way to target the right element based on which select changed
+			var elem = $(this).attr('id').split('_select')[0];
+			
 			for (var i=0; i < fontList.length; i++) {
-				if(fontList[i].family == fontName){
-					console.log(fontList[i].variants);
+				var variants = fontList[i].variants;
+
+				if(fontList[i].family == fontName && variants.length > 1){
+					//create a drop down menu
+					$('<select class="variant_select" id="'+ elem +'_variant" name="'+ elem +'v"><select>').insertAfter(this);
+					for (var i=0; i < variants.length; i++) {
+						var variantName = variants[i].replace('italic',' italic');
+						$('<option>'+variantName+'</option>').appendTo('#' + elem +'_variant');
+					};
+				
+					return false;
+				} else {
+					//do something else when there is only one variant
+					$('<link rel="stylesheet" href="' + base + fontName.replace(/\s+/g, '+') +'&subset=latin" />').appendTo('head');
 				}
 			};
 
