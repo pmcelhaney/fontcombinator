@@ -15,9 +15,11 @@ ini_set('display_errors', 'on');
 	<title>The Web Font Combinator</title>
 	
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script> 
-
+	<script src="javascript/chosen/chosen.jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	
 	<script src="javascript/fc_functions.js" type="text/javascript" charset="utf-8"></script>
 	
+	<link rel="stylesheet" href="javascript/chosen/chosen.css" type="text/css" media="screen" title="no title" charset="utf-8" />
 	
 	<style type="text/css" media="screen">
 	* {

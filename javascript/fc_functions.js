@@ -39,12 +39,14 @@ $(document).ready(function() {
 				//this adds the stylesheet link to Google Web Fonts, but with only the font's name as a subset of characters, for performance
 				$('<link rel="stylesheet" href="' + base + fontCallName +'&subset=latin&text=' + fontNameLetters +'"  type="text/css" />').appendTo('head');
 				$(targets).append('<option value="'+ fontName +'">'+ fontName +'</option>');
+				
 			}
 		};
 		
 		//readding the default font list so it appears at the end of the <select> and everything is ordered properly
 		$(targets).append('<option disabled>*** System Fonts ***</option>');
 		$(targets).append(defaultList);
+		$(targets).chosen();
 	}
 	
 	// hiding submit button when JS is present
@@ -118,6 +120,7 @@ $(document).ready(function() {
 		
 	};
 	variantChange();
+	
 	
 });
 
