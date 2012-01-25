@@ -47,6 +47,10 @@ $(document).ready(function() {
 		$(targets).append('<option disabled>*** System Fonts ***</option>');
 		$(targets).append(defaultList);
 		$(targets).chosen();
+		$('li.active-result').each(function(){
+			$(this).css('font-family', $(this).html());
+		});
+		
 	}
 	
 	// hiding submit button when JS is present
@@ -54,15 +58,16 @@ $(document).ready(function() {
 	
 	function changeFonts(fontList){
 		$(targets).change(function(){
-			//gets rid of any variant drop down added previously
-			$(this).siblings('.variant_select').remove();
-			
 			var base = "http://fonts.googleapis.com/css?family=";
 			var fontName = $(this).val();
 			
 			//handy way to target the right element based on which select changed
 			var elem = $(this).attr('id').split('_select')[0];
 			$(elem).css('font-style', 'normal');
+			//gets rid of any variant drop down added previously
+			$(this).siblings('.variant_select').remove();
+			$('#'+ elem + '_variant_chzn').remove();
+			
 			
 			//this for loop adding variants based on which font is selected
 			for (var i=0; i < fontList.length; i++) {
@@ -74,7 +79,7 @@ $(document).ready(function() {
 					//adding stylesheet call with all variants
 					$('<link rel="stylesheet" href="' + base + fontName.replace(/\s+/g, '+') +':' + variantCall + '&subset=latin" type="text/css" />').appendTo('head');
 					//create a drop down menu
-					$('<select class="variant_select" id="'+ elem +'_variant" name="'+ elem +'v"><select>').insertAfter(this);
+					$('<select class="variant_select" id="'+ elem +'_variant" name="'+ elem +'v"><select>').insertAfter('#' +elem + '_select_chzn');
 					for (var i=0; i < variants.length; i++) {
 						var variantName = variants[i].replace('italic',' italic');
 						//special handling of variants results
@@ -90,7 +95,7 @@ $(document).ready(function() {
 					};
 
 					$(elem).css('font-family', fontName).css('font-weight', '400');
-					
+					$('.variant_select').chosen();
 					
 					return false;  //had to throw this in to stop infinite loop
 				} else if(fontList[i].family == fontName){
@@ -120,6 +125,8 @@ $(document).ready(function() {
 		
 	};
 	variantChange();
+	
+
 	
 	
 });
