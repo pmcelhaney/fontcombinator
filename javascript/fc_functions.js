@@ -1,4 +1,5 @@
 $(document).ready(function() {
+		
 	var targets = '#h1_select, #h2_select, #p_select';  //these are used throughout
 	// ajax call
 	$.ajax({
@@ -20,10 +21,12 @@ $(document).ready(function() {
 	
 	//error message
 	function noLove(){
-		//error message goes here
+	
+		console.log('no love!');
+		$('<h2>I&rsquo;m sorry, but we can&rsquo;t seem to reach Google Fonts.</h2>').prependTo('body');
 	}
 	
-	
+
 	// font calls and option set up
 	function getFonts(fontList){
 		var base = "http://fonts.googleapis.com/css?family=";
@@ -126,17 +129,32 @@ $(document).ready(function() {
 	};
 	variantChange();
 	
-
 	
+	function elementSupportsAttribute (element,attribute) {
+		var test = document.createElement(element);
+		if (attribute in test){
+			return true;
+			} else {
+				return false;
+			}
+	}
+	
+	if(elementSupportsAttribute('input','type="range"')){
+		//alert('yay');
+	}
+	
+	$('input[type=number]').change(function(){
+		console.log('yay');
+	});
 	
 });
 
 // TODO: 
-// - implement chosen
+
 // - replace size inputs w/ ranges
 // - add jquery color picker
 // - add footer/explanation
 // - STYLE - nice design this time, k?	
 // - add background color
-// - add bookmark string
+// - add bookmarkable string
 	

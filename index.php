@@ -14,7 +14,12 @@ ini_set('display_errors', 'on');
 
 	<title>The Web Font Combinator</title>
 	
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script> 
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+	<script>
+	if (typeof jQuery == 'undefined') {
+	document.write('<script src="', 'javascript/jquery-1.7.1.min.js', '" type="text/JavaScript"><\/script>');
+	}
+	</script>
 	<script src="javascript/chosen/chosen.jquery.min.js" type="text/javascript" charset="utf-8"></script>
 	
 	<script src="javascript/fc_functions.js" type="text/javascript" charset="utf-8"></script>
@@ -107,8 +112,8 @@ ini_set('display_errors', 'on');
 				?>	
 			</select>
 			<label for="h1size">Size:</label>
-			<input type="number" name="h1size" value="<?php if(isset($_GET['h1size'])) {echo $_GET['h1size']; } else { echo '30'; } ?>"  id="h1size" />px
-
+			<input type="range" name="h1size" value="<?php if(isset($_GET['h1size'])) {echo $_GET['h1size']; } else { echo '30'; } ?>"  id="h1size" />px
+			<label for="h1lh">Line Height</label><input type="range" name="h1lh" value="<?php if(isset($_GET['h1lh'])) {echo $_GET['h1lh']; }  else { echo '1.4'; } ?>" id="h1lh" step="0.01" />
 			<label for="h1color">Color:</label>
 			<input type="text" name="h1color" value="<?php if(isset($_GET['h1color'])) {echo $_GET['h1color']; } ?>" placeholder="000000" id="h1color" />
 			
@@ -119,7 +124,8 @@ ini_set('display_errors', 'on');
 				<?php include 'default_font_list_h2.php' ?>	
 			</select>
 			<label for="h2size">Size:</label>
-			<input type="number" name="h2size" value="<?php if(isset($_GET['h2size'])) {echo $_GET['h2size']; } else { echo '20'; } ?>"  id="h2size" />px
+			<input type="range" name="h2size" value="<?php if(isset($_GET['h2size'])) {echo $_GET['h2size']; } else { echo '20'; } ?>"  id="h2size" />px
+			<label for="h2lh">Line Height</label><input type="range" name="plh" value="<?php if(isset($_GET['h2lh'])) {echo $_GET['h2lh']; }  else { echo '1.4'; } ?>" id="h2lh" step="0.01" />
 			<label for="h2color">Color:</label>
 			<input type="text" name="h2color" value="<?php if(isset($_GET['h2color'])) {echo $_GET['h2color']; } ?>" placeholder="000000" id="h2color" />
 			
@@ -132,9 +138,10 @@ ini_set('display_errors', 'on');
 			</select>
 			<label for="psize">Size:</label>
 			<input type="number" name="psize" value="<?php if(isset($_GET['psize'])) {echo $_GET['psize']; }  else { echo '16'; } ?>" placeholder="16" id="psize" />px
+			<label for="plh">Line Height</label><input type="range" name="plh" value="<?php if(isset($_GET['plh'])) {echo $_GET['plh']; }  else { echo '1.4'; } ?>" id="plh" step="0.01" />
 			<label for="pcolor">Color:</label>
 			<input type="text" name="pcolor" value="<?php if(isset($_GET['pcolor'])) {echo $_GET['pcolor']; } ?>" placeholder="000000" id="pcolor" />
-			<label for="plh">Line Height</label><input type="number" name="plh" value="<?php if(isset($_GET['plh'])) {echo $_GET['plh']; }  else { echo '1.4'; } ?>" id="plh" step="0.01" />
+			
 			
 			
 		</section>
