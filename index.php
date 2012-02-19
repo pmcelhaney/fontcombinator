@@ -25,7 +25,7 @@ ini_set('display_errors', 'on');
 	<script src="javascript/fc_functions.js" type="text/javascript" charset="utf-8"></script>
 	
 	<link rel="stylesheet" href="javascript/chosen/chosen.css" type="text/css" media="screen" title="no title" charset="utf-8" />
-	
+	<link rel="stylesheet" href="css/fc_style.css" type="text/css" media="screen" title="no title" charset="utf-8" />
 	<style type="text/css" media="screen">
 	* {
 		margin: 0;
@@ -101,11 +101,19 @@ ini_set('display_errors', 'on');
 </head>
 <body>
 	
-	<form action="index.php" method="get" accept-charset="utf-8">
+	<section>
+		<h1 id="h1_text" contenteditable="true">The Web Font Combinator</h1>
+		<h2 id="h2_text" contenteditable="true">A Web Typography Tool</h2>
+		<div id="p_text" contenteditable="true">
+			<p>Donec ante. Sed at velit. Vestibulum at purus at urna porttitor sodales. Nullam pulvinar, urna interdum eleifend sodales, eros est tempus quam, quis ultricies nibh elit vitae urna. Donec pretium arcu at quam. Quisque tristique, lacus id tempor blandit, quam massa imperdiet lorem, porta fermentum quam ante ac tortor. Curabitur mauris lectus, dapibus ut, ornare sit amet, vulputate sit amet, erat.</p>
+		</div>
+	</section>
+	
+	<form action="index.php" method="get" accept-charset="utf-8" id="controls">
 
 
 		<section id="h1_sec">
-			<h1 id="the_web_font_combinator" contenteditable="true">The Web Font Combinator</h1>
+			
 			<select name="h1" id="h1_select">
 				<?php 
 					include 'default_font_list_h1.php';
@@ -119,7 +127,7 @@ ini_set('display_errors', 'on');
 			
 		</section>
 		<section id="h2_sec">	
-			<h2 id="h2_text" contenteditable="true">A Web Typography Tool</h2>
+			
 			<select name="h2" id="h2_select">
 				<?php include 'default_font_list_h2.php' ?>	
 			</select>
@@ -131,7 +139,7 @@ ini_set('display_errors', 'on');
 			
 		</section>	
 		<section id="p_sec">
-			<p>Donec ante. Sed at velit. Vestibulum at purus at urna porttitor sodales. Nullam pulvinar, urna interdum eleifend sodales, eros est tempus quam, quis ultricies nibh elit vitae urna. Donec pretium arcu at quam. Quisque tristique, lacus id tempor blandit, quam massa imperdiet lorem, porta fermentum quam ante ac tortor. Curabitur mauris lectus, dapibus ut, ornare sit amet, vulputate sit amet, erat.</p>
+			
 			
 			<select name="p" id="p_select">
 				<?php include 'default_font_list_p.php' ?>	
