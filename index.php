@@ -104,7 +104,7 @@ ini_set('display_errors', 'on');
 </head>
 <body>
 	
-	<section>
+	<section class="content_main">
 		<h1 id="h1_text" contenteditable="true">The Web Font Combinator</h1>
 		<h2 id="h2_text" contenteditable="true">A Web Typography Tool</h2>
 		<div id="p_text" contenteditable="true">
@@ -115,7 +115,13 @@ ini_set('display_errors', 'on');
 	
 	<form action="index.php" method="get" accept-charset="utf-8" id="controls">
 
-
+		<select name="control_option" id="control_option">
+			<option value="h1">Headline (H1)</option>
+			<option value="h2">Subhead (H2)</option>
+			<option value="p">Body text (p)</option>
+			<option value="bg">Background</option>
+			
+		</select>
 		<section id="h1_sec">
 			
 			<select name="h1" id="h1_select">
@@ -143,8 +149,6 @@ ini_set('display_errors', 'on');
 			
 		</section>	
 		<section id="p_sec">
-			
-			
 			<select name="p" id="p_select">
 				<?php include 'default_font_list_p.php' ?>	
 			</select>
@@ -153,12 +157,12 @@ ini_set('display_errors', 'on');
 			<label for="plh">Line Height</label><input type="range" name="plh" value="<?php if(isset($_GET['plh'])) {echo $_GET['plh']; }  else { echo '1.4'; } ?>" id="plh" step="0.01" />
 			<label for="pcolor">Color:</label>
 			<input type="text" name="pcolor" value="<?php if(isset($_GET['pcolor'])) {echo $_GET['pcolor']; } ?>" placeholder="000000" id="pcolor" />
-			
-			
-			
 		</section>
 		<input type="submit"  id="submit" />
 			
 	</form>
+	
+	
+	
 </body>
 </html>

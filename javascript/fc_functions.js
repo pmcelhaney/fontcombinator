@@ -78,7 +78,7 @@ $(document).ready(function() {
 				//checking to see if the selected font has more than one variant 
 				if(fontList[i].family == fontName && variants.length > 1){
 					var variantCall = variants.toString();
-					console.log(variants);
+					
 					//adding stylesheet call with all variants
 					$('<link rel="stylesheet" href="' + base + fontName.replace(/\s+/g, '+') +':' + variantCall + '&subset=latin" type="text/css" />').appendTo('head');
 					//create a drop down menu
@@ -94,19 +94,40 @@ $(document).ready(function() {
 							$('<option value="400 italic">400 italic</option>').appendTo('#' + elem +'_variant');
 						} else {
 							$('<option value="'+variantName+'">'+variantName+'</option>').appendTo('#' + elem +'_variant');
-						}	
+						}
+						
 					};
 
 					$(elem).css('font-family', fontName).css('font-weight', '400');
+					//get the chosen drop down to take on the css style
+					$("#" + elem + "_select_chzn .chzn-single").css('font-family', fontName);
 					$('.variant_select').chosen();
 					
+					// var varLis = $('#' + elem + '_variant_chzn li');
+					// 
+					// if($('#' + elem + '_variant_chzn li').html().indexOf('italic') == -1){
+					// 	$(this).css('background','red');
+					// }
+					$('#' + elem + '_variant_chzn li').each(function(){
+						$(this).css('font-family', fontName);
+						if($(this).html().indexOf('italic') == -1){
+							$(this).css('font-weight', $(this).html());
+						} else {
+							$(this).css('font-weight', $(this).html().split(' italic')[0]).css('font-style','italic');
+						}
+					});
+						
 					return false;  //had to throw this in to stop infinite loop
 				} else if(fontList[i].family == fontName){
 					//do something else when there is only one variant
 					//adding plain stylesheet call w/ no variant addendum
 					$('<link rel="stylesheet" href="' + base + fontName.replace(/\s+/g, '+') +'&subset=latin" type="text/css"  />').appendTo('head');
+					//get the chosen drop down to take on the css style
+					$("#" + elem + "_select_chzn .chzn-single").css('font-family', fontName);
 				}
 			}; //end of variant for loop
+			
+			//actually, you know, change fonts
 			$(elem).css('font-family', fontName);
 
 		});// end of targets change
@@ -130,29 +151,32 @@ $(document).ready(function() {
 	variantChange();
 	
 	
-	function elementSupportsAttribute (element,attribute) {
-		var test = document.createElement(element);
-		if (attribute in test){
-			return true;
-			} else {
-				return false;
-			}
-	}
-	
-	if(elementSupportsAttribute('input','type="range"')){
-		//alert('yay');
-	}
-	
-	$('input[type=number]').change(function(){
-		console.log('yay');
+	$('#h1color, #h2color, #pcolor').on('focus', function(){
+		
+		$('#h1color, #h2color, #pcolor').ColorPicker({
+		onShow: function(){
+			thisEl = $(this).attr('id');
+		},	
+		onChange: function(hsb, hex, rgb, el) {
+			$('#' + thisEl).val(hex);
+			$(el).ColorPickerHide();
+		},
+		onBeforeShow: function () {
+			$(this).ColorPickerSetColor(this.value);
+		}
+	})
+	.bind('keyup', function(){
+		$(this).ColorPickerSetColor(this.value);
 	});
+});
+
+	$('body').attr('spellcheck',false); //because of firefox's spellcheck, which has a nasty red underline
 	
+
 });
 
 // TODO: 
 
-// - replace size inputs w/ ranges
-// - add jquery color picker
 // - add footer/explanation
 // - STYLE - nice design this time, k?	
 // - add background color
