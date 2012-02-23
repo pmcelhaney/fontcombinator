@@ -120,9 +120,8 @@ ini_set('display_errors', 'on');
 			<option value="h2">Subhead (H2)</option>
 			<option value="p">Body text (p)</option>
 			<option value="bg">Background</option>
-			
 		</select>
-		<section id="h1_sec">
+		<section id="h1_sec" class="control active">
 			
 			<select name="h1" id="h1_select">
 				<?php 
@@ -136,7 +135,7 @@ ini_set('display_errors', 'on');
 			<input type="text" name="h1color" value="<?php if(isset($_GET['h1color'])) {echo $_GET['h1color']; } ?>" placeholder="000000" id="h1color" />
 			
 		</section>
-		<section id="h2_sec">	
+		<section id="h2_sec" class="control">	
 			
 			<select name="h2" id="h2_select">
 				<?php include 'default_font_list_h2.php' ?>	
@@ -148,7 +147,7 @@ ini_set('display_errors', 'on');
 			<input type="text" name="h2color" value="<?php if(isset($_GET['h2color'])) {echo $_GET['h2color']; } ?>" placeholder="000000" id="h2color" />
 			
 		</section>	
-		<section id="p_sec">
+		<section id="p_sec" class="control">
 			<select name="p" id="p_select">
 				<?php include 'default_font_list_p.php' ?>	
 			</select>
@@ -158,6 +157,8 @@ ini_set('display_errors', 'on');
 			<label for="pcolor">Color:</label>
 			<input type="text" name="pcolor" value="<?php if(isset($_GET['pcolor'])) {echo $_GET['pcolor']; } ?>" placeholder="000000" id="pcolor" />
 		</section>
+		
+		
 		<input type="submit"  id="submit" />
 			
 	</form>
