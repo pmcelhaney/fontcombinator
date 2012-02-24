@@ -5,8 +5,6 @@ form {
 section {
   background: ;
 }
-<<<<<<< HEAD
-=======
 /* @group Reset */
 html,
 body,
@@ -142,6 +140,18 @@ table {
   border-spacing: 0;
 }
 /* @end */
+/*---------------------------------------------------
+    LESS Elements 0.6
+  ---------------------------------------------------
+    A set of useful LESS mixins by Dmitry Fadeyev
+    Special thanks for mixin suggestions to:
+      Kris Van Herzeele,
+      Benoit Adam,
+      Portenart Emile-Victor,
+      Ryan Faerman
+
+    More info at: http://lesselements.com
+-----------------------------------------------------*/
 /* @group Typography */
 /* @end */
 /* @group Structure */
@@ -152,14 +162,44 @@ body {
 #controls {
   position: absolute;
   width: 80%;
+  min-width: 900px;
   margin-left: -40%;
   top: 0;
   left: 50%;
+  height: 50px;
   background: rgba(0, 0, 0, 0.6);
+  -webkit-border-top-right-radius: 0;
+  -webkit-border-bottom-right-radius: 0.5em;
+  -webkit-border-bottom-left-radius: 0.5em;
+  -webkit-border-top-left-radius: 0;
+  -moz-border-radius-topright: 0;
+  -moz-border-radius-bottomright: 0.5em;
+  -moz-border-radius-bottomleft: 0.5em;
+  -moz-border-radius-topleft: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0.5em;
+  border-bottom-left-radius: 0.5em;
+  border-top-left-radius: 0;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
 }
 .content_main {
   width: 80%;
-  margin: 200px auto 20px auto;
+  margin: 100px auto 20px auto;
+}
+.control {
+  display: none;
+  font-size: .875em;
+}
+.control.active {
+  display: block;
+}
+#control_option {
+  float: left;
+}
+#h2_select_chzn {
+  width: 300px;
 }
 /* @end */
 /* @group Navigation */
@@ -289,4 +329,3 @@ textarea {
   min-height: 1px;
 }
 /* @end */
->>>>>>> parent of 9ff2cf5... more styling, getting ready to trouble shoot the menus

@@ -6,12 +6,13 @@ form {
   font-family: @fonts;
 }
 
-
-
+section {
+	background: ;
+}
 
 
 @import 'reset.less';
-
+@import 'elements.less';
 /* @group Typography */
 
 
@@ -28,16 +29,36 @@ body {
 #controls {
 	position: absolute;
 	width: 80%;
+	min-width: 900px;
 	margin-left: -40%;
 	top: 0;
 	left: 50%;
+	height: 50px;
 	background: rgba(0,0,0,.6);
+	.border-radius(0,.5em,.5em,0);
+	
 }
 
 .content_main {
 	width: 80%;
-	margin: 200px auto 20px auto;
+	margin: 100px auto 20px auto;
 	}
+
+.control {
+	display:none;
+	font-size: .875em;
+}
+.control.active {
+	display:block;
+}
+
+#control_option {
+	float:left;
+}
+
+#h2_select_chzn {
+	width: 300px;
+}
 
 /* @end */
 
@@ -55,6 +76,7 @@ body {
 
 
 
+
 /* @end */
 
 /* @group Classes/specific features */
@@ -64,4 +86,3 @@ body {
 /* @end */
 
 @import "helpers.less";
-

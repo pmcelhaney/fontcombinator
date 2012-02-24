@@ -1,6 +1,29 @@
 $(document).ready(function() {
 	var targets = '#h1_select, #h2_select, #p_select';  //these are used throughout
 	
+	// ajax call
+	$.ajax({
+		url: 'https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyAc3a2WfPaSbA1B25u78zFQRfAide8T34c&sort=alpha&sort=desc',
+		dataType: 'jsonp',
+		success: onJson,
+		error: noLove
+	});
+	
+	// ajax success function
+	function onJson(data){
+		if(data.kind === "webfonts#webfontList"){
+			getFonts(data.items);
+			changeFonts(data.items);
+		} else {
+			noLove();
+		}
+	}
+	
+	//error message
+	function noLove(){
+		$('<h2>I&rsquo;m sorry, but we can&rsquo;t seem to reach Google Fonts.</h2>').prependTo('body');
+	}
+	
 	// font calls and option set up
 	function getFonts(fontList){
 		var base = "http://fonts.googleapis.com/css?family=";
@@ -24,43 +47,15 @@ $(document).ready(function() {
 		$(targets).append('<option disabled>*** System Fonts ***</option>');
 		$(targets).append(defaultList);
 		$(targets).chosen();
+		$('.chzn-container').css('width','180px');
 		$('li.active-result').each(function(){
 			$(this).css('font-family', $(this).html());
 		});
 		
 	}
 	
-	//error message
-	function noLove(){
-		$('<h2>I&rsquo;m sorry, but we can&rsquo;t seem to reach Google Fonts.</h2>').prependTo('body');
-	}
-	
-	// ajax success function
-	function onJson(data){
-		if(data.kind === "webfonts#webfontList"){
-			getFonts(data.items);
-			changeFonts(data.items);
-		} else {
-			noLove();
-		}
-	}
-	
-
-		
-	
-	// ajax call
-	$.ajax({
-		url: 'https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyAc3a2WfPaSbA1B25u78zFQRfAide8T34c&sort=alpha&sort=desc',
-		dataType: 'jsonp',
-		success: onJson,
-		error: noLove
-	});
-	
-
-	
 
 
-	
 	// hiding submit button when JS is present
 	$('#submit').hide();
 	
@@ -146,7 +141,7 @@ $(document).ready(function() {
 			} else {
 				$(elem).css('font-weight', variant.replace(' italic',''));
 				$(elem).css('font-style','italic');
-				$('#' + elem + '_variant_chzn').css('font-weight', variant).css('font-style', 'italic');
+				$('#' + elem + '_variant_chzn').css('font-weight', variant.replace(' italic','')).css('font-style', 'italic');
 			}
 			
 		}); //end of variant_select change
@@ -154,16 +149,26 @@ $(document).ready(function() {
 	}
 	variantChange();
 	
+	//fontsize change
+	
+	$('#h1size, #h2size, #psize').on('change', function(){
+		var elem = $(this).attr('id').split('size')[0];
+		$(elem).css('font-size', $(this).val() + 'px');
+	});
+	
+	
 	
 	$('#h1color, #h2color, #pcolor').on('focus', function(){
 		
 		$('#h1color, #h2color, #pcolor').ColorPicker({
 		onShow: function(){
 			thisEl = $(this).attr('id');
+			thisElem = thisEl.split('color')[0];
 		},
 		onChange: function(hsb, hex, rgb, el) {
 			$('#' + thisEl).val(hex);
 			$(el).ColorPickerHide();
+			$(thisElem).css('color', '#'+hex)
 		},
 		onBeforeShow: function () {
 			$(this).ColorPickerSetColor(this.value);
@@ -176,7 +181,24 @@ $(document).ready(function() {
 
 	$('body').attr('spellcheck',false); //because of firefox's spellcheck, which has a nasty red underline
 	
+	$('#control_option').on('change',function(){
+		var control = $(this).val();
+		var controlId = '#' + control + '_sec';
+		
+		if(!($(controlId).hasClass('active'))){
+			$('.control.active').fadeOut('fast', function(){
+				$('.control.active').removeClass('active');
+				$(controlId).fadeIn('fast', function(){
+					$(this).addClass('active');
+					$('.chzn-container').css('width','180px');
+				});
+			});
+			
+		}
+	});
+	
 
+	
 });
 
 // TODO:
