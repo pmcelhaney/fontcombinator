@@ -149,18 +149,28 @@ $(document).ready(function() {
 	}
 	variantChange();
 	
+	
+	
 	//fontsize change
 	
 	$('#h1size, #h2size, #psize').on('change', function(){
 		var elem = $(this).attr('id').split('size')[0];
-		$(elem).css('font-size', $(this).val() + 'px');
+		var value = $(this).val(); 
+		$(elem).css('font-size', value + 'px');
+		$(this).next('span.value').text(value);
+	});
+	
+	//line-height change
+	
+	$('#h1lh, #h2lh, #plh').on('change', function(){
+		var elem = $(this).attr('id').split('lh')[0];
+		var value = $(this).val(); 
+		$(elem).css('line-height', $(this).val());
+		$(this).next('span.value').text(value);
 	});
 	
 	
-	
-	$('#h1color, #h2color, #pcolor').on('focus', function(){
-		
-		$('#h1color, #h2color, #pcolor').ColorPicker({
+	$('#h1color, #h2color, #pcolor').ColorPicker({
 		onShow: function(){
 			thisEl = $(this).attr('id');
 			thisElem = thisEl.split('color')[0];
@@ -168,7 +178,7 @@ $(document).ready(function() {
 		onChange: function(hsb, hex, rgb, el) {
 			$('#' + thisEl).val(hex);
 			$(el).ColorPickerHide();
-			$(thisElem).css('color', '#'+hex)
+			$(thisElem).css('color', '#'+hex);
 		},
 		onBeforeShow: function () {
 			$(this).ColorPickerSetColor(this.value);
@@ -177,7 +187,24 @@ $(document).ready(function() {
 	.bind('keyup', function(){
 		$(this).ColorPickerSetColor(this.value);
 	});
-});
+	
+	$('#bgcolor').ColorPicker({
+		onShow: function(){
+			thisEl = $(this).attr('id');
+		},
+		onChange: function(hsb, hex, rgb, el) {
+			$('#' + thisEl).val(hex);
+			$(el).ColorPickerHide();
+			$('body').css('background-color', '#'+hex);
+		},
+		onBeforeShow: function () {
+			$(this).ColorPickerSetColor(this.value);
+		}
+	})
+	.bind('keyup', function(){
+		$(this).ColorPickerSetColor(this.value);
+	});
+	
 
 	$('body').attr('spellcheck',false); //because of firefox's spellcheck, which has a nasty red underline
 	
@@ -190,7 +217,7 @@ $(document).ready(function() {
 				$('.control.active').removeClass('active');
 				$(controlId).fadeIn('fast', function(){
 					$(this).addClass('active');
-					$('.chzn-container').css('width','180px');
+					$('#h1_select_chzn, #h2_select_chzn, #p_select_chzn').css('width','180px');
 				});
 			});
 			

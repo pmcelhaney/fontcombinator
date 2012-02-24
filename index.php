@@ -36,6 +36,12 @@ ini_set('display_errors', 'on');
 		font-weight: regular;
 	}
 	
+	<?php
+	if(isset($_GET['bgcolor'])){
+		echo 'body { background-color: #' . $_GET['bgcolor'] . ';';	
+	}
+	?>
+	
 	h1 {
 		font-size: 30px;
 		font-size: regular;
@@ -128,9 +134,15 @@ ini_set('display_errors', 'on');
 					include 'default_font_list_h1.php';
 				?>	
 			</select>
+			
 			<label for="h1size">Size:</label>
-			<input type="range" name="h1size" value="<?php if(isset($_GET['h1size'])) {echo $_GET['h1size']; } else { echo '30'; } ?>"  id="h1size" min="0" max="150" />px
-			<label for="h1lh">Line Height</label><input type="range" name="h1lh" value="<?php if(isset($_GET['h1lh'])) {echo $_GET['h1lh']; }  else { echo '1.4'; } ?>" id="h1lh" step="0.01" min="0" max="5"/>
+			<input type="range" name="h1size" value="<?php if(isset($_GET['h1size'])) {echo $_GET['h1size']; } else { echo '30'; } ?>"  id="h1size" min="0" max="150" />
+			<span class="value"><?php if(isset($_GET['h1size'])) {echo $_GET['h1size']; } else { echo '30'; } ?></span>px
+			
+			<label for="h1lh">Line Height</label>
+			<input type="range" name="h1lh" value="<?php if(isset($_GET['h1lh'])) {echo $_GET['h1lh']; }  else { echo '1.4'; } ?>" id="h1lh" step="0.01" min="0" max="5"/>
+			<span class="value"><?php if(isset($_GET['h1lh'])) {echo $_GET['h1lh']; } else { echo '1.4'; } ?></span>
+			
 			<label for="h1color">Color:</label>
 			<input type="text" name="h1color" value="<?php if(isset($_GET['h1color'])) {echo $_GET['h1color']; } ?>" placeholder="000000" id="h1color" />
 			
@@ -141,8 +153,13 @@ ini_set('display_errors', 'on');
 				<?php include 'default_font_list_h2.php' ?>	
 			</select>
 			<label for="h2size">Size:</label>
-			<input type="range" name="h2size" value="<?php if(isset($_GET['h2size'])) {echo $_GET['h2size']; } else { echo '20'; } ?>"  id="h2size" />px
-			<label for="h2lh">Line Height</label><input type="range" name="plh" value="<?php if(isset($_GET['h2lh'])) {echo $_GET['h2lh']; }  else { echo '1.4'; } ?>" id="h2lh" step="0.01" />
+			<input type="range" name="h2size" value="<?php if(isset($_GET['h2size'])) {echo $_GET['h2size']; } else { echo '20'; } ?>"  id="h2size" />
+			<span class="value"><?php if(isset($_GET['h2size'])) {echo $_GET['h2size']; } else { echo '20'; } ?></span>px
+			
+			<label for="h2lh">Line Height</label>
+			<input type="range" name="plh" value="<?php if(isset($_GET['h2lh'])) {echo $_GET['h2lh']; }  else { echo '1.4'; } ?>" id="h2lh" step="0.01" min="0" max="5" />
+			<span class="value"><?php if(isset($_GET['h2lh'])) {echo $_GET['h2lh']; } else { echo '1.4'; } ?></span>
+			
 			<label for="h2color">Color:</label>
 			<input type="text" name="h2color" value="<?php if(isset($_GET['h2color'])) {echo $_GET['h2color']; } ?>" placeholder="000000" id="h2color" />
 			
@@ -152,13 +169,19 @@ ini_set('display_errors', 'on');
 				<?php include 'default_font_list_p.php' ?>	
 			</select>
 			<label for="psize">Size:</label>
-			<input type="range" name="psize" value="<?php if(isset($_GET['psize'])) {echo $_GET['psize']; }  else { echo '16'; } ?>" min="5" max="45" id="psize" />px
-			<label for="plh">Line Height</label><input type="range" name="plh" value="<?php if(isset($_GET['plh'])) {echo $_GET['plh']; }  else { echo '1.4'; } ?>" id="plh" step="0.01" />
+			<input type="range" name="psize" value="<?php if(isset($_GET['psize'])) {echo $_GET['psize']; }  else { echo '16'; } ?>" min="5" max="45" id="psize" />
+			<span class="value"><?php if(isset($_GET['psize'])) {echo $_GET['psize']; } else { echo '16'; } ?></span>px
+			
+			<label for="plh">Line Height</label>
+			<input type="range" name="plh" value="<?php if(isset($_GET['plh'])) {echo $_GET['plh']; }  else { echo '1.4'; } ?>" id="plh" step="0.01" min="0" max="5" />
+			<span class="value"><?php if(isset($_GET['plh'])) {echo $_GET['plh']; } else { echo '1.4'; } ?></span>
+			
 			<label for="pcolor">Color:</label>
 			<input type="text" name="pcolor" value="<?php if(isset($_GET['pcolor'])) {echo $_GET['pcolor']; } ?>" placeholder="000000" id="pcolor" />
 		</section>
 		<section id="bg_sec" class="control">
-			
+			<label for="bgcolor">Background Color:</label>
+			<input type="text" name="bgcolor" value="<?php if(isset($_GET['bgcolor'])) {echo $_GET['bgcolor']; } ?>" placeholder="FFFFFF" id="bgcolor" />
 		</section>	
 		
 		<input type="submit"  id="submit" />
