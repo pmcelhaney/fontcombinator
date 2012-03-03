@@ -31,12 +31,13 @@ body {
 	width: 80%;
 	min-width: 900px;
 	margin-left: -40%;
-	top: 0;
+	top: -3px;
 	left: 50%;
 	height: 50px;
 	padding-top: 15px;
 	background: rgba(0,0,0,.6);
 	.border-radius(0,.5em,.5em,0);
+	/*border: double 4px rgba(0,0,0,.6);*/
 	
 }
 
@@ -68,6 +69,20 @@ body {
 
 .content_main p {
 	margin-bottom: .75em;
+}
+
+#h1_select, #h2_select, #p_select,
+#h1_select_chzn, #h2_select_chzn, #p_select_chzn, .chzn-container,
+ .size, .lh, .color {
+	float: left;
+}
+
+.size label, .lh label, .color label {
+	display: block;
+}
+
+.hide_btn {
+	padding: 5px 10px;
 }
 /* @end */
 

@@ -103,7 +103,10 @@ $(document).ready(function() {
 					$("#" + elem + "_select_chzn .chzn-single").css('font-family', fontName);
 					$('.variant_select').chosen();
 	
-					$('#' + elem + '_variant_chzn').css('font-family', fontName);
+					$('#' + elem + '_variant_chzn').css({'font-family':fontName, 'min-width':'90px'});
+					$('#' + elem + '_variant_chzn div.chzn-drop').css('width', '88px');
+					$('#' + elem + '_variant_chzn').find('input').css('width', '53px');
+					
 					$('#' + elem + '_variant_chzn li').each(function(){
 						$(this).css('font-family', fontName);
 						if($(this).html().indexOf('italic') === -1){
@@ -135,9 +138,9 @@ $(document).ready(function() {
 			var elem = $(this).attr('id').split('_variant')[0];
 			var variant = $(this).val();
 			if(variant.indexOf(' italic') === -1){
-				$(elem).css('font-weight',variant);
+				$(elem).css('font-weight', variant).css('font-style','normal');
 				$(elem, '#' + elem + '_variant_chzn').css('font-style','normal');
-				$('#' + elem + '_variant_chzn').css('font-weight', variant).css('font-style', 'normal');
+				$('#' + elem + '_variant_chzn').css({'font-weight' : variant , 'font-style' : 'normal'});
 			} else {
 				$(elem).css('font-weight', variant.replace(' italic',''));
 				$(elem).css('font-style','italic');
@@ -164,7 +167,7 @@ $(document).ready(function() {
 	
 	$('#h1lh, #h2lh, #plh').on('change', function(){
 		var elem = $(this).attr('id').split('lh')[0];
-		var value = $(this).val(); 
+		var value = parseFloat($(this).val()).toFixed(2);
 		$(elem).css('line-height', $(this).val());
 		$(this).next('span.value').text(value);
 	});
@@ -204,7 +207,17 @@ $(document).ready(function() {
 	.bind('keyup', function(){
 		$(this).ColorPickerSetColor(this.value);
 	});
-	
+		
+	$('#h1_hide, #h2_hide, #p_hide').on('click',function(){
+			var elem = $(this).attr('id').split('_hide')[0];
+			if($(this).val() === "Hide"){
+				$(elem).fadeOut('slow');
+				$(this).val('Show');
+			} else {
+				$(elem).fadeIn('slow');
+				$(this).val('Hide');
+			}
+	});	
 
 	$('body').attr('spellcheck',false); //because of firefox's spellcheck, which has a nasty red underline
 	
@@ -217,6 +230,10 @@ $(document).ready(function() {
 				$('.control.active').removeClass('active');
 				$(controlId).fadeIn('fast', function(){
 					$(this).addClass('active');
+					// if(control !== 'bg'){
+					// 	fadeUp(document.getElementById(control + '_text'), 255,255,190);
+					// }
+					
 					$('#h1_select_chzn, #h2_select_chzn, #p_select_chzn').css('width','180px');
 				});
 			});
@@ -224,15 +241,32 @@ $(document).ready(function() {
 		}
 	});
 	
-
+	function fadeUp(element,red,green,blue){
+		
+		if(element.fade) {
+			clearTimeout(element.fade);
+		}
+		element.style.backgroundColor = 'rgb('+ red +', '+green+','+blue+')';
+		if(red == 255 && green == 255 && blue == 255){
+			return;
+		}
+		var newred = red + Math.ceil((255- red)/10);
+		var newgreen = green + Math.ceil((255- green)/10);
+		var newblue = blue + Math.ceil((255- blue)/10);
+		var repeat = function(){
+			fadeUp(element,newred,newgreen,newblue);
+		};
+		element.fade = setTimeout(repeat,100);
+	}
 	
 });
+
+	
 
 // TODO:
 
 // - add footer/explanation
 // - STYLE - nice design this time, k?
-// - add background color switching
 // - add background texture additions
 // - add bookmarkable string
 	
