@@ -23,26 +23,36 @@ section {
 
 body {
 	position: relative;
+
+}
+.panel {
+	position:relative;
+	margin:0 auto;
+	width: 80%;
+	min-width: 900px;
 	padding-top: 1px;
+	display: none;
+	min-height: 500px;
+}
+
+.panel.here {
+	display: block;
 }
 
 #controls {
 	position: absolute;
-	width: 80%;
-	min-width: 900px;
-	margin-left: -40%;
-	top: -3px;
-	left: 50%;
+	width: 100%;
+	top: 0;
+	left: 0;
 	height: 50px;
 	padding-top: 15px;
 	background: rgba(0,0,0,.6);
 	.border-radius(0,.5em,.5em,0);
-	/*border: double 4px rgba(0,0,0,.6);*/
 	
 }
 
 .content_main {
-	width: 80%;
+	
 	margin: 100px auto 20px auto;
 	}
 
@@ -84,11 +94,27 @@ body {
 .hide_btn {
 	padding: 5px 10px;
 }
+
+#hide_controls {
+	position:absolute;
+	right: 20px;
+	top: 20px;
+}
+
+
 /* @end */
 
 
 /* @group Navigation */
+nav {
+	background: red;
+}
 
+#panel_nav {
+	width: 80%;
+	min-width: 900px;
+	margin: 0 auto;
+}
 
 
 

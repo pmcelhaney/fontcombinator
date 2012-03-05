@@ -219,6 +219,15 @@ $(document).ready(function() {
 			}
 	});	
 
+
+	$('<a href="#" id="hide_controls">Hide</a>').insertAfter('#controls');
+	
+	$('#hide_controls').on('click',function(){
+		$('#controls').slideToggle('slow');
+		
+		return false;
+	});
+	
 	$('body').attr('spellcheck',false); //because of firefox's spellcheck, which has a nasty red underline
 	
 	$('#control_option').on('change',function(){
@@ -230,10 +239,6 @@ $(document).ready(function() {
 				$('.control.active').removeClass('active');
 				$(controlId).fadeIn('fast', function(){
 					$(this).addClass('active');
-					// if(control !== 'bg'){
-					// 	fadeUp(document.getElementById(control + '_text'), 255,255,190);
-					// }
-					
 					$('#h1_select_chzn, #h2_select_chzn, #p_select_chzn').css('width','180px');
 				});
 			});
@@ -241,23 +246,30 @@ $(document).ready(function() {
 		}
 	});
 	
-	function fadeUp(element,red,green,blue){
-		
-		if(element.fade) {
-			clearTimeout(element.fade);
-		}
-		element.style.backgroundColor = 'rgb('+ red +', '+green+','+blue+')';
-		if(red == 255 && green == 255 && blue == 255){
-			return;
-		}
-		var newred = red + Math.ceil((255- red)/10);
-		var newgreen = green + Math.ceil((255- green)/10);
-		var newblue = blue + Math.ceil((255- blue)/10);
-		var repeat = function(){
-			fadeUp(element,newred,newgreen,newblue);
-		};
-		element.fade = setTimeout(repeat,100);
+	
+	//panel navigation
+	function carouselNav(targetId,activeClass,changingContentClass,speed){
+		$(targetId + ' a').click(function(){
+			var link = $(this).attr('href');
+			var clickLink = $(this);
+			if($(this).hasClass(activeClass)){
+				//do nothing
+			} else {
+				$('.'+changingContentClass+'.'+activeClass).fadeOut(speed, function(){
+					$('.'+activeClass).removeClass(activeClass);
+					$(clickLink).addClass(activeClass);
+					$(link).fadeIn(speed, function(){
+						$(this).addClass(activeClass);
+					});	
+				});
+				//call back functions go here
+			}
+			return false;
+		});
 	}
+	
+	carouselNav('#panel_nav','here','panel','normal');
+
 	
 });
 

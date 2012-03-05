@@ -2,6 +2,8 @@
 
 error_reporting(E_ALL);
 ini_set('display_errors', 'on');
+
+
 ?>
 
 <!DOCTYPE html>
@@ -37,6 +39,16 @@ ini_set('display_errors', 'on');
 	}
 	
 	<?php
+	
+	function isSetDef($setVal, $default){
+		if(isset($_GET[$setVal])) {
+			echo $_GET[$setVal]; 
+		} else { 
+			echo $default; 
+		}
+	}
+	
+	
 	if(isset($_GET['bgcolor'])){
 		echo 'body { background-color: #' . $_GET['bgcolor'] . ';';	
 	}
@@ -89,7 +101,7 @@ ini_set('display_errors', 'on');
 		if(isset($_GET['p'])){ 
 		   	 echo 'font-family: ' . $_GET['p'] . ';';	 
 		    }
-		if(isset($_GET['h2size'])){ 
+		if(isset($_GET['psize'])){ 
 	   	 echo 'font-size: ' . $_GET['psize'] . 'px;';	 
 	    }
 	
@@ -109,7 +121,7 @@ ini_set('display_errors', 'on');
 	</style>	
 </head>
 <body>
-	
+	<section id="font-combinator" class="panel here">
 	<section class="content_main">
 		<h1 id="h1_text" contenteditable="true">The Web Font Combinator</h1>
 		<h2 id="h2_text" contenteditable="true">A Web Typography Tool</h2>
@@ -120,7 +132,6 @@ ini_set('display_errors', 'on');
 	</section>
 	
 	<form action="index.php" method="get" accept-charset="utf-8" id="controls">
-
 		<select name="control_option" id="control_option">
 			<option value="h1">Headline (H1)</option>
 			<option value="h2">Subhead (H2)</option>
@@ -137,14 +148,14 @@ ini_set('display_errors', 'on');
 			
 			<div class="size">
 				<label for="h1size">Size:</label>
-				<input type="range" name="h1size" value="<?php if(isset($_GET['h1size'])) {echo $_GET['h1size']; } else { echo '30'; } ?>"  id="h1size" min="0" max="150" />
-				<span class="value"><?php if(isset($_GET['h1size'])) {echo $_GET['h1size']; } else { echo '30'; } ?></span>px
+				<input type="range" name="h1size" value="<?php isSetDef('h1size', '30'); ?>"  id="h1size" min="0" max="150" />
+				<span class="value"><?php isSetDef('h1size', '30'); ?></span>px
 			</div>
 
 			<div class="lh">
 				<label for="h1lh">Line Height</label>
-				<input type="range" name="h1lh" value="<?php if(isset($_GET['h1lh'])) {echo $_GET['h1lh']; }  else { echo '1.40'; } ?>" id="h1lh" step="0.01" min="0" max="5"/>
-				<span class="value"><?php if(isset($_GET['h1lh'])) {echo $_GET['h1lh']; } else { echo '1.40'; } ?></span>
+				<input type="range" name="h1lh" value="<?php isSetDef('h1lh', '1.40'); ?>" id="h1lh" step="0.01" min="0" max="5"/>
+				<span class="value"><?php isSetDef('h1lh', '1.40'); ?></span>
 			</div>
 			
 			<div class="color">
@@ -161,13 +172,13 @@ ini_set('display_errors', 'on');
 			</select>
 			<div class="size">
 				<label for="h2size">Size:</label>
-				<input type="range" name="h2size" value="<?php if(isset($_GET['h2size'])) {echo $_GET['h2size']; } else { echo '20'; } ?>"  id="h2size" />
-				<span class="value"><?php if(isset($_GET['h2size'])) {echo $_GET['h2size']; } else { echo '20'; } ?></span>px
+				<input type="range" name="h2size" value="<?php isSetDef('h2size', '20'); ?>"  id="h2size" />
+				<span class="value"><?php isSetDef('h2size', '20'); ?></span>px
 			</div>
 			<div class="lh">
 				<label for="h2lh">Line Height</label>
-				<input type="range" name="plh" value="<?php if(isset($_GET['h2lh'])) {echo $_GET['h2lh']; }  else { echo '1.40'; } ?>" id="h2lh" step="0.01" min="0" max="5" />
-				<span class="value"><?php if(isset($_GET['h2lh'])) {echo $_GET['h2lh']; } else { echo '1.40'; } ?></span>
+				<input type="range" name="plh" value="<?php isSetDef('h2lh', '1.40'); ?>" id="h2lh" step="0.01" min="0" max="5" />
+				<span class="value"><?php isSetDef('h2lh', '1.40'); ?></span>
 			</div>
 			<div class="color">
 				<label for="h2color">Color:</label>
@@ -181,13 +192,13 @@ ini_set('display_errors', 'on');
 			</select>
 			<div class="size">
 				<label for="psize">Size:</label>
-				<input type="range" name="psize" value="<?php if(isset($_GET['psize'])) {echo $_GET['psize']; }  else { echo '16'; } ?>" min="5" max="45" id="psize" />
-				<span class="value"><?php if(isset($_GET['psize'])) {echo $_GET['psize']; } else { echo '16'; } ?></span>px
+				<input type="range" name="psize" value="<?php isSetDef('psize', '16'); ?>" min="5" max="45" id="psize" />
+				<span class="value"><?php isSetDef('psize', '16'); ?></span>px
 			</div>
 			<div class="lh">
 				<label for="plh">Line Height</label>
-				<input type="range" name="plh" value="<?php if(isset($_GET['plh'])) {echo $_GET['plh']; }  else { echo '1.40'; } ?>" id="plh" step="0.01" min="0" max="5" />
-				<span class="value"><?php if(isset($_GET['plh'])) {echo $_GET['plh']; } else { echo '1.40'; } ?></span>
+				<input type="range" name="plh" value="<?php isSetDef('plh', '1.40'); ?>" id="plh" step="0.01" min="0" max="5" />
+				<span class="value"><?php isSetDef('plh', '1.40'); ?></span>
 			</div>
 			<div class="color">
 				<label for="pcolor">Color:</label>
@@ -203,8 +214,20 @@ ini_set('display_errors', 'on');
 		<input type="submit"  id="submit" />
 			
 	</form>
-	
-	
-	
+	</section>
+	<section id="about" class="panel">
+		<h1>About stuff goes here</h1>
+	</section>
+	<section id="change-log" class="panel">
+		<h1 id="change_log">Change Log</h1>
+	</section>	
+	<nav>
+		<ul id="panel_nav">
+			<li><a href="#font-combinator" class="here">Play</a></li>
+			<li><a href="#about">About</a></li>
+			<li><a href="#change-log">Change log</a></li>
+			
+		</ul> <!-- panel_nav -->
+	</nav>	
 </body>
 </html>
