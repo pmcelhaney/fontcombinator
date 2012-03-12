@@ -1,3 +1,6 @@
+
+
+
 $(document).ready(function() {
 	var targets = '#h1_select, #h2_select, #p_select';  //these are used throughout
 	
@@ -44,7 +47,7 @@ $(document).ready(function() {
 		}
 		
 		//readding the default font list so it appears at the end of the <select> and everything is ordered properly
-		$(targets).append('<option disabled>*** System Fonts ***</option>');
+		$(targets).append('<option>*** System Fonts ***</option>');
 		$(targets).append(defaultList);
 		$(targets).chosen();
 		$('.chzn-container').css('width','180px');
@@ -75,6 +78,7 @@ $(document).ready(function() {
 			//this for loop adding variants based on which font is selected
 			for (var i=0; i < fontList.length; i++) {
 				var variants = fontList[i].variants;
+				
 				//checking to see if the selected font has more than one variant
 				if(fontList[i].family === fontName && variants.length > 1){
 					var variantCall = variants.toString();
@@ -120,12 +124,30 @@ $(document).ready(function() {
 				} else if(fontList[i].family === fontName){
 					//do something else when there is only one variant
 					//adding plain stylesheet call w/ no variant addendum
+					console.log(fontName);
 					$('<link rel="stylesheet" href="' + base + fontName.replace(/\s+/g, '+') +'&subset=latin" type="text/css"  />').appendTo('head');
 					//get the chosen drop down to take on the css style
 					$("#" + elem + "_select_chzn .chzn-single").css('font-family', fontName);
-				}
+					
+				} 
 			} //end of variant for loop
 			
+			if(fontName === 'Arial'|| fontName === 'Garamond' || fontName === 'Georgia'|| fontName === 'Helvetica' || fontName === 'Lucida Grande'|| fontName === 'Palatino' || fontName === 'Tahoma'|| fontName === 'Times New Roman' || fontName === 'Trebuchet MS'|| fontName === 'Verdana') {
+				$("#" + elem + "_select_chzn .chzn-single").css('font-family', fontName);
+				$('<select class="variant_select" id="'+ elem +'_variant" name="'+ elem +'v"><option value="400" selected>400</option><option value="400 italic">400 italic</option><option>Bold</option><option>Bold italic</option><select>').insertAfter('#' +elem + '_select_chzn');
+				$('.variant_select').chosen();
+				$('#' + elem + '_variant_chzn').css({'font-family':fontName, 'min-width':'90px'});
+				$('#' + elem + '_variant_chzn div.chzn-drop').css('width', '88px');
+				$('#' + elem + '_variant_chzn').find('input').css('width', '53px');
+				$('#' + elem + '_variant_chzn li').each(function(){
+					$(this).css('font-family', fontName);
+					if($(this).html().indexOf('italic') === -1){
+						$(this).css('font-weight', $(this).html());
+					} else {
+						$(this).css('font-weight', $(this).html().split(' italic')[0]).css('font-style','italic');
+					}
+				});
+			}
 			//actually, you know, change fonts
 			$(elem).css('font-family', fontName);
 
@@ -144,7 +166,7 @@ $(document).ready(function() {
 			} else {
 				$(elem).css('font-weight', variant.replace(' italic',''));
 				$(elem).css('font-style','italic');
-				$('#' + elem + '_variant_chzn').css('font-weight', variant.replace(' italic','')).css('font-style', 'italic');
+				$('#' + elem + '_variant_chzn').css('font-weight', variant.replace(' italic',''));
 			}
 			
 		}); //end of variant_select change
@@ -270,8 +292,19 @@ $(document).ready(function() {
 	
 	carouselNav('#panel_nav','here','panel','normal');
 
-	
+	function externalLinks() { 
+	 if (!document.getElementsByTagName) return; 
+	 var anchors = document.getElementsByTagName("a"); 
+	 for (var i=0; i<anchors.length; i++) { 
+	   var anchor = anchors[i]; 
+	   if (anchor.getAttribute("href") && 
+	       anchor.getAttribute("rel") == "external") 
+	     anchor.target = "_blank"; 
+	 } 
+	} 
+	externalLinks();
 });
+
 
 	
 

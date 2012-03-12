@@ -15,8 +15,27 @@ section {
 @import 'elements.less';
 /* @group Typography */
 
+h1 {
+	overflow:visible;
+	font-size: 30px;
+	margin-bottom: 10px;
+}
 
+h2 {
+	margin-bottom: 7px;
+	font-size: 20px;
+}
 
+em {
+	font-style: italic;
+}
+
+strong { 
+	font-weight: bold;
+}
+p:focus {
+	background: red;
+}
 /* @end */
 
 /* @group Structure */
@@ -29,10 +48,11 @@ body {
 	position:relative;
 	margin:0 auto;
 	width: 80%;
-	min-width: 900px;
+	min-width: 800px;
 	padding-top: 1px;
 	display: none;
 	min-height: 500px;
+	overflow: visible;
 }
 
 .panel.here {
@@ -41,6 +61,7 @@ body {
 
 #controls {
 	position: absolute;
+	color: white;
 	width: 100%;
 	top: 0;
 	left: 0;
@@ -49,6 +70,11 @@ body {
 	background: rgba(0,0,0,.6);
 	.border-radius(0,.5em,.5em,0);
 	
+}
+
+#controls .chzn-container, #controls input {
+	color: black;
+	margin-right: 5px;
 }
 
 .content_main {
@@ -106,8 +132,8 @@ body {
 
 
 /* @group Navigation */
-nav {
-	background: red;
+footer {
+	background: purple;
 }
 
 #panel_nav {
@@ -116,8 +142,18 @@ nav {
 	margin: 0 auto;
 }
 
+#panel_nav li {
+	float: left;
+	display:inline;
+}
+#panel_nav a {
+	display: block;
+	padding: 5px 25px;
+}
 
-
+#panel_nav a.here {
+	background: white;
+}
 /* @end */
 
 /* @group Forms */
@@ -130,7 +166,13 @@ nav {
 /* @end */
 
 /* @group Classes/specific features */
-
+#logo {
+	.rounded(50%);
+	width: 100px;
+	height: 100px;
+	background: orange;
+	float: left;
+}
 
 
 /* @end */

@@ -26,6 +26,7 @@ ini_set('display_errors', 'on');
 	<script src="javascript/colorpicker.js" type="text/javascript" charset="utf-8"></script>
 	
 	<script src="javascript/fc_functions.js" type="text/javascript" charset="utf-8"></script>
+	<script src="javascript/html5slider.js" type="text/javascript" charset="utf-8"></script>
 	
 	<link rel="stylesheet" href="javascript/chosen/chosen.css" type="text/css" media="screen" title="no title" charset="utf-8" />
 	<link rel="stylesheet" href="css/fc_style.css" type="text/css" media="screen" title="no title" charset="utf-8" />
@@ -55,8 +56,8 @@ ini_set('display_errors', 'on');
 	?>
 	
 	h1 {
-		font-size: 30px;
-		font-size: regular;
+	
+		
 		<?php
 		if(isset($_GET['h1'])){ 
 		   	 echo 'font-family: ' . $_GET['h1'] . ';';	 
@@ -64,14 +65,7 @@ ini_set('display_errors', 'on');
 		if(isset($_GET['h1size'])){ 
 			   	 echo 'font-size: ' . $_GET['h1size'] . 'px;';	 
 			    }
-			
-		// if(isset($_GET['h1w'])){ 
-		// 	   	 echo 'font-weight: ' . $_GET['h1w'] . ';';	 
-		// 	    }
-		// if(isset($_GET['h1s'])){ 
-		// 	   	 echo 'font-style: ' . $_GET['h1s'] . ';';	 
-		// 	    }
-	
+
 		if(isset($_GET['h1color'])){ 
 			   	 echo 'color: #' . $_GET['h1color'] . ';';	 
 			    }
@@ -126,8 +120,9 @@ ini_set('display_errors', 'on');
 		<h1 id="h1_text" contenteditable="true">The Web Font Combinator</h1>
 		<h2 id="h2_text" contenteditable="true">A Web Typography Tool</h2>
 		<div id="p_text" contenteditable="true">
-			<p>Donec ante. afafSed at velit. Vestibulum at purus at urna porttitor sodales. Nullam pulvinar, urna interdum eleifend sodales, eros est tempus quam, quis ultricies nibh elit vitae urna. Donec pretium arcu at quam. Quisque tristique, lacus id tempor blandit, quam massa imperdiet lorem, porta fermentum quam ante ac tortor. Curabitur mauris lectus, dapibus ut, ornare sit amet, vulputate sit amet, erat.</p>
-			<p>Donec ante. Sed at velit. Vestibulum at purus at urna porttitor sodales. Nullam pulvinar, urna interdum eleifend sodales, eros est tempus quam, quis ultricies nibh elit vitae urna. Donec pretium arcu at quam. Quisque tristique, lacus id tempor blandit, quam massa imperdiet lorem, porta fermentum quam ante ac tortor. Curabitur mauris lectus, dapibus ut, ornare sit amet, vulputate sit amet, erat.</p>
+			<p>This tool has been built to allow previewing of font combinations in a <em>fast, browser-based</em> manner. There have been numerous printed books through the years that allowed a designer to put a headline font next to a body font, and this is an attempt to recreate that for the web.</p>
+			<p><strong>Directions:</strong> You can edit any of the type on this page in order to preview any particular text. In the controls at the top, select the element you want to modify, and then <em>play!</em> You can change the font, size, line height and color of an element, as well as hide an element altogether.</p>
+			<p>This tool is being actively developed, and some cool requested features are definitely on the roadmap. If you run into any issues, please let me know either through my website or via Twitter.</p>
 		</div>
 	</section>
 	
@@ -217,17 +212,51 @@ ini_set('display_errors', 'on');
 	</section>
 	<section id="about" class="panel">
 		<h1>About stuff goes here</h1>
+		
+		The Web Font Combinator was built for the classic reason of 'scratching my own itch'. I am a web designer/front end developer, and wanted to have a way to quickly see how fonts looked in combination.
+		
+		<h2>Credits</h2>
+		<p>There are a number of technologies that make this tool possible, and I&rsquo;d like to give them credit:</p>
+		
+		<p><a href="http://www.google.com/webfonts" title="Google Web Fonts" rel="external">Google Web Fonts</a> - This tool works with the Google Fonts collection, as well as a few selected System fonts. In particular, I&rsquo;ve made use of the <a href="https://developers.google.com/webfonts/docs/developer_api" rel="external">Google Web Fonts Developer API</a> to make updates automated.</p>
+		<p><a href="http://jquery.com/" title="jQuery: The Write Less, Do More, JavaScript Library" rel="external">jQuery</a> - this site heart and soul is written in jQuery. It would not have seen the light of day if it were not for this JavaScript library.</p>
+		<p><a href="http://harvesthq.github.com/chosen/" title="Chosen - a JavaScript plugin for jQuery and Prototype - makes select boxes better" rel="external">The Chosen jQuery plugin</a> - this nifty plugin takes very long select elements and transforms them into much more useful lists. This is what I use on the font name and variant list drop downs.</p>
 	</section>
 	<section id="change-log" class="panel">
 		<h1 id="change_log">Change Log</h1>
 	</section>	
+	
+	
+	
+	
+	<footer class="clearfix">
+		<div id="logo">
+			WFC
+		</div>
 	<nav>
 		<ul id="panel_nav">
-			<li><a href="#font-combinator" class="here">Play</a></li>
+			<li><a href="#font-combinator" class="here">Font Combinator</a></li>
 			<li><a href="#about">About</a></li>
-			<li><a href="#change-log">Change log</a></li>
-			
+			<li><a href="#change-log">Change log</a></li>	
 		</ul> <!-- panel_nav -->
-	</nav>	
+		
+	</nav>
+	
+	<p>&copy; <?php echo date("Y") ?> <a href="http://chipcullen.com/" rel="external">Chip Cullen</a></p>
+	</footer>
+	
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-22598536-1']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>	
 </body>
 </html>

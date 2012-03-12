@@ -15,7 +15,7 @@ $systemFontArr = array(
 ?>
 
 	<?php foreach($systemFontArr as $value) { ?>
-	    <option value="<?php echo $value ?>"
+	    <option class="system_font" value="<?php echo $value ?>"
 			<?php if(isset($_GET['h1']) && $_GET['h1'] == $value){
 				echo 'selected';
 			} ?>
