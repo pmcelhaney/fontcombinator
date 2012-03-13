@@ -1,10 +1,3 @@
-form {
-  color: #110000;
-  font-family: Georgia, "Times New Roman", serif;
-}
-section {
-  background: ;
-}
 /* @group Reset */
 html,
 body,
@@ -168,19 +161,19 @@ em {
 strong {
   font-weight: bold;
 }
-p:focus {
-  background: red;
-}
 /* @end */
 /* @group Structure */
 body {
-  position: relative;
+  background: purple;
+}
+#wrapper {
+  background: white;
 }
 .panel {
   position: relative;
   margin: 0 auto;
   width: 80%;
-  min-width: 800px;
+  min-width: 920px;
   padding-top: 1px;
   display: none;
   min-height: 500px;
@@ -196,7 +189,7 @@ body {
   top: 0;
   left: 0;
   height: 50px;
-  padding-top: 15px;
+  padding-top: 10px;
   background: rgba(0, 0, 0, 0.6);
   -webkit-border-top-right-radius: 0;
   -webkit-border-bottom-right-radius: 0.5em;
@@ -213,6 +206,8 @@ body {
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
+  font-family: Verdana, Helvetica, Arial, 'sans-serif';
+  font-size: .75em;
 }
 #controls .chzn-container,
 #controls input {
@@ -220,11 +215,11 @@ body {
   margin-right: 5px;
 }
 .content_main {
-  margin: 100px auto 20px auto;
+  position: relative;
+  margin: 100px auto 0px auto;
 }
 .control {
   display: none;
-  font-size: .875em;
 }
 .control.active {
   display: block;
@@ -244,7 +239,7 @@ body {
   width: 60px;
 }
 .content_main p {
-  margin-bottom: .75em;
+  margin-bottom: .8em;
 }
 #h1_select,
 #h2_select,
@@ -253,18 +248,37 @@ body {
 #h2_select_chzn,
 #p_select_chzn,
 .chzn-container,
+.element,
+.font-family,
 .size,
 .lh,
 .color {
   float: left;
+  margin-right: 10px;
 }
+.element label,
+.font-family label,
 .size label,
 .lh label,
-.color label {
+.color label,
+#bg_sec label {
   display: block;
+  margin-bottom: 3px;
+}
+.element {
+  padding: 0 6px 0 0;
+  margin: 0 10px 0 0;
+  border-right: solid 1px white;
+}
+.element label {
+  margin-left: 15px;
+}
+#control_option_chzn {
+  margin-left: 15px;
 }
 .hide_btn {
   padding: 5px 10px;
+  margin-top: 15px;
 }
 #hide_controls {
   position: absolute;
@@ -274,7 +288,11 @@ body {
 /* @end */
 /* @group Navigation */
 footer {
-  background: purple;
+  margin: 0 auto;
+  padding: 0;
+  background: red;
+  width: 80%;
+  min-width: 920px;
 }
 #panel_nav {
   width: 80%;

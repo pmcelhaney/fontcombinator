@@ -28,9 +28,9 @@ ini_set('display_errors', 'on');
 	<script src="javascript/fc_functions.js" type="text/javascript" charset="utf-8"></script>
 	<script src="javascript/html5slider.js" type="text/javascript" charset="utf-8"></script>
 	
-	<link rel="stylesheet" href="javascript/chosen/chosen.css" type="text/css" media="screen" title="no title" charset="utf-8" />
-	<link rel="stylesheet" href="css/fc_style.css" type="text/css" media="screen" title="no title" charset="utf-8" />
-	<link rel="stylesheet" href="css/colorpicker.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+	<link rel="stylesheet" href="javascript/chosen/chosen.css" type="text/css" media="screen" title="no title" />
+	<link rel="stylesheet" href="css/fc_style.css" type="text/css" media="screen" title="no title" />
+	<link rel="stylesheet" href="css/colorpicker.css" type="text/css" media="screen" title="no title" />
 	
 	<style type="text/css" media="screen">
 	* {
@@ -115,6 +115,9 @@ ini_set('display_errors', 'on');
 	</style>	
 </head>
 <body>
+	<div id="wrapper">
+		
+
 	<section id="font-combinator" class="panel here">
 	<section class="content_main">
 		<h1 id="h1_text" contenteditable="true">The Web Font Combinator</h1>
@@ -127,28 +130,37 @@ ini_set('display_errors', 'on');
 	</section>
 	
 	<form action="index.php" method="get" accept-charset="utf-8" id="controls">
-		<select name="control_option" id="control_option">
-			<option value="h1">Headline (H1)</option>
-			<option value="h2">Subhead (H2)</option>
-			<option value="p">Body text (p)</option>
-			<option value="bg">Background</option>
-		</select>
-		<section id="h1_sec" class="control active">
-			
-			<select name="h1" id="h1_select">
-				<?php 
-					include 'default_font_list_h1.php';
-				?>	
+		<div class="element">
+			<label for="control_option">Element:</label>
+			<select name="control_option" id="control_option">
+				<option value="h1">Headline (H1)</option>
+				<option value="h2">Subhead (H2)</option>
+				<option value="p">Body text (p)</option>
+				<option value="bg">Background</option>
 			</select>
+			
+		</div>
+
+		<section id="h1_sec" class="control active">
+			<div class="font-family">
+				<label for="h1_select">Font:</label>
+				<select name="h1" id="h1_select">
+					<?php 
+						include 'default_font_list_h1.php';
+					?>	
+				</select>
+				
+			</div>
+
 			
 			<div class="size">
 				<label for="h1size">Size:</label>
-				<input type="range" name="h1size" value="<?php isSetDef('h1size', '30'); ?>"  id="h1size" min="0" max="150" />
+				<input type="range" name="h1size" value="<?php isSetDef('h1size', '30'); ?>"  id="h1size" min="0" max="200" />
 				<span class="value"><?php isSetDef('h1size', '30'); ?></span>px
 			</div>
 
 			<div class="lh">
-				<label for="h1lh">Line Height</label>
+				<label for="h1lh">Line Height:</label>
 				<input type="range" name="h1lh" value="<?php isSetDef('h1lh', '1.40'); ?>" id="h1lh" step="0.01" min="0" max="5"/>
 				<span class="value"><?php isSetDef('h1lh', '1.40'); ?></span>
 			</div>
@@ -161,17 +173,20 @@ ini_set('display_errors', 'on');
 			<input type="button" name="h1_hide" value="Hide" id="h1_hide" class="hide_btn" />
 		</section>
 		<section id="h2_sec" class="control">	
+			<div class="font-family">
+				<label for="h2_select">Font:</label>
 			
 			<select name="h2" id="h2_select">
 				<?php include 'default_font_list_h2.php' ?>	
 			</select>
+			</div>
 			<div class="size">
 				<label for="h2size">Size:</label>
 				<input type="range" name="h2size" value="<?php isSetDef('h2size', '20'); ?>"  id="h2size" />
 				<span class="value"><?php isSetDef('h2size', '20'); ?></span>px
 			</div>
 			<div class="lh">
-				<label for="h2lh">Line Height</label>
+				<label for="h2lh">Line Height:</label>
 				<input type="range" name="plh" value="<?php isSetDef('h2lh', '1.40'); ?>" id="h2lh" step="0.01" min="0" max="5" />
 				<span class="value"><?php isSetDef('h2lh', '1.40'); ?></span>
 			</div>
@@ -182,16 +197,20 @@ ini_set('display_errors', 'on');
 			<input type="button" name="h2_hide" value="Hide" id="h2_hide" class="hide_btn" />
 		</section>	
 		<section id="p_sec" class="control">
+			<div class="font-family">
+				<label for="p_select">Font:</label>
+			
 			<select name="p" id="p_select">
 				<?php include 'default_font_list_p.php' ?>	
 			</select>
+			</div>
 			<div class="size">
 				<label for="psize">Size:</label>
 				<input type="range" name="psize" value="<?php isSetDef('psize', '16'); ?>" min="5" max="45" id="psize" />
 				<span class="value"><?php isSetDef('psize', '16'); ?></span>px
 			</div>
 			<div class="lh">
-				<label for="plh">Line Height</label>
+				<label for="plh">Line Height:</label>
 				<input type="range" name="plh" value="<?php isSetDef('plh', '1.40'); ?>" id="plh" step="0.01" min="0" max="5" />
 				<span class="value"><?php isSetDef('plh', '1.40'); ?></span>
 			</div>
@@ -223,11 +242,11 @@ ini_set('display_errors', 'on');
 		<p><a href="http://harvesthq.github.com/chosen/" title="Chosen - a JavaScript plugin for jQuery and Prototype - makes select boxes better" rel="external">The Chosen jQuery plugin</a> - this nifty plugin takes very long select elements and transforms them into much more useful lists. This is what I use on the font name and variant list drop downs.</p>
 	</section>
 	<section id="change-log" class="panel">
-		<h1 id="change_log">Change Log</h1>
+		<h1>Change Log</h1>
+		<h2>Version 1.0</h2>
+		<p>Total rewrite! lots of stuff going on here.</p>
 	</section>	
-	
-	
-	
+		</div> <!-- end of wrapper -->
 	
 	<footer class="clearfix">
 		<div id="logo">
