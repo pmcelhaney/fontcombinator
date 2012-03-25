@@ -6,6 +6,51 @@ ini_set('display_errors', 'on');
 
 ?>
 
+	<?php
+	//PHP functions used throughout
+	function isSetDef($setVal, $default){
+		if(isset($_GET[$setVal])) {
+			echo $_GET[$setVal]; 
+		} else { 
+			echo $default; 
+		}
+	}
+	
+	
+	if(isset($_GET['bgcolor'])){
+		echo 'body { background-color: #' . $_GET['bgcolor'] . ';';	
+	}
+	
+	//loads default system fonts
+	function defaultFonts($elem){
+		$systemFontArr = array(
+			'Arial',
+			'Garamond',
+			'Georgia',
+			'Helvetica',
+			'Lucida Grande',
+			'Palatino',
+			'Tahoma',
+			'Times New Roman',
+			'Trebuchet MS',
+			'Verdana'
+			);	
+	
+		foreach($systemFontArr as $value) {
+			echo '<option class="system_font" value="' . $value . '"';
+			if(isset($_GET[$elem]) && $_GET[$elem] == $value){
+							echo 'selected';
+						}	
+			echo	'>' . $value . '</option>';
+			echo $value;
+		}		
+	
+	}
+
+	
+	?>
+
+
 <!DOCTYPE html>
 <!--[if lt IE 7]> <html lang="en-us" class="no-js ie6"> <![endif]-->
 <!--[if IE 7]>    <html lang="en-us" class="no-js ie7"> <![endif]-->
@@ -44,21 +89,7 @@ ini_set('display_errors', 'on');
 		font-weight: regular;
 	}
 	
-	<?php
-	
-	function isSetDef($setVal, $default){
-		if(isset($_GET[$setVal])) {
-			echo $_GET[$setVal]; 
-		} else { 
-			echo $default; 
-		}
-	}
-	
-	
-	if(isset($_GET['bgcolor'])){
-		echo 'body { background-color: #' . $_GET['bgcolor'] . ';';	
-	}
-	?>
+
 	
 	h1 {
 	
@@ -153,7 +184,7 @@ ini_set('display_errors', 'on');
 				<label for="h1_select">Font:</label>
 				<select name="h1" id="h1_select">
 					<?php 
-						include 'default_font_list_h1.php';
+						defaultFonts('h1');
 					?>	
 				</select>
 				
@@ -184,7 +215,10 @@ ini_set('display_errors', 'on');
 				<label for="h2_select">Font:</label>
 			
 			<select name="h2" id="h2_select">
-				<?php include 'default_font_list_h2.php' ?>	
+				<?php 
+					defaultFonts('h2');
+				?>	
+					
 			</select>
 			</div>
 			<div class="size">
@@ -208,7 +242,9 @@ ini_set('display_errors', 'on');
 				<label for="p_select">Font:</label>
 			
 			<select name="p" id="p_select">
-				<?php include 'default_font_list_p.php' ?>	
+				<?php 
+						defaultFonts('p');
+					?>	
 			</select>
 			</div>
 			<div class="size">

@@ -1,4 +1,5 @@
 /*padding for elements*/
+/*Based on the Eric Meyer reset*/
 /* @group Reset */
 html,
 body,
@@ -594,8 +595,5 @@ textarea {
     margin: 0 10px 0 0;
     border-right: solid 1px white;
     border-bottom: none;
-  }
-  body {
-    background: red;
   }
 }

@@ -87,11 +87,7 @@ $(document).ready(function () {
 					$(elem).css('font-family', fontName).css('font-weight', '400');
 					//get the chosen drop down to take on the css style
 					$("#" + elem + "_select_chzn .chzn-single").css('font-family', fontName);
-					
-	
-					$('#' + elem + '_variant_chzn').css({'font-family':fontName, 'min-width':'90px'});
-					$('#' + elem + '_variant_chzn div.chzn-drop').css('width', '88px');
-					$('#' + elem + '_variant_chzn').find('input').css('width', '53px');
+
 					
 					$('#' + elem + '_variant_chzn li').each(function() {
 						$(this).css('font-family', fontName);
@@ -117,8 +113,7 @@ $(document).ready(function () {
 				$('<select class="variant_select" id="'+ elem +'_variant" name="'+ elem +'v"><option value="400" selected>400</option><option value="400 italic">400 italic</option><option>Bold</option><option>Bold italic</option><select>').insertAfter('#' +elem + '_select_chzn');
 				
 				$('#' + elem + '_variant_chzn').css({'font-family':fontName, 'min-width':'90px'});
-				$('#' + elem + '_variant_chzn div.chzn-drop').css('width', '88px');
-				$('#' + elem + '_variant_chzn').find('input').css('width', '53px');
+
 				$('#' + elem + '_variant_chzn li').each(function() {
 				$(this).css('font-family', fontName);
 				if($(this).html().indexOf('italic') === -1) {
@@ -136,13 +131,23 @@ $(document).ready(function () {
 	
 	
 	function chosenAttach() {
-		$(targets).chosen();
+		//$(targets).chosen();
+					
+	
+		// $('#' + elem + '_variant_chzn').css({'font-family':fontName, 'min-width':'90px'});
+		// $('#' + elem + '_variant_chzn div.chzn-drop').css('width', '88px');
+		// $('#' + elem + '_variant_chzn').find('input').css('width', '53px');
+		
+		// $('#' + elem + '_variant_chzn div.chzn-drop').css('width', '88px');
+		// $('#' + elem + '_variant_chzn').find('input').css('width', '53px');
+		
+		
 		$('#control_option').chosen();
-		$('#control_option_chzn').css('width','130px');
-		$('#control_option_chzn .chzn-drop').css('width', '128px');
-		$('#control_option_chzn .chzn-search').remove();
+		// $('#control_option_chzn').css('width','130px');
+		// $('#control_option_chzn .chzn-drop').css('width', '128px');
+		// $('#control_option_chzn .chzn-search').remove();
 		$('.variant_select').chosen();
-		$('.variant_select').chosen();
+		$// ('.variant_select').chosen();
 	}
 	chosenAttach();
 	
@@ -273,7 +278,7 @@ $(document).ready(function () {
 				$('.control.active').removeClass('active');
 				$(controlId).fadeIn('fast', function() {
 					$(this).addClass('active');
-					$('#h1_select_chzn, #h2_select_chzn, #p_select_chzn').css('width','180px');
+					$('#h1_select_chzn, #h2_select_chzn, #p_select_chzn, .chzn-drop').css('width','180px');
 				});
 			});
 			
