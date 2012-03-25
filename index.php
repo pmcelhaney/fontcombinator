@@ -58,10 +58,10 @@ ini_set('display_errors', 'on');
 <!--[if gt IE 8]><!--> <html lang="en-us" class="no-js"> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
- <!-- <meta name="HandheldFriendly" content="True">
+ <meta name="HandheldFriendly" content="True">
  <meta name="MobileOptimized" content="320">
  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1">
- <meta name="apple-mobile-web-app-capable" content="yes"> -->
+ <meta name="apple-mobile-web-app-capable" content="yes">
  
 
 	<title>The Web Font Combinator</title>
