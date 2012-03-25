@@ -13,6 +13,11 @@ ini_set('display_errors', 'on');
 <!--[if gt IE 8]><!--> <html lang="en-us" class="no-js"> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+ <!-- <meta name="HandheldFriendly" content="True">
+ <meta name="MobileOptimized" content="320">
+ <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1">
+ <meta name="apple-mobile-web-app-capable" content="yes"> -->
+ 
 
 	<title>The Web Font Combinator</title>
 	
@@ -119,7 +124,7 @@ ini_set('display_errors', 'on');
 		
 
 	<section id="font-combinator" class="panel here">
-	<section class="content_main">
+	
 		<h1 id="h1_text" contenteditable="true">The Web Font Combinator</h1>
 		<h2 id="h2_text" contenteditable="true">A Web Typography Tool</h2>
 		<div id="p_text" contenteditable="true">
@@ -127,9 +132,10 @@ ini_set('display_errors', 'on');
 			<p><strong>Directions:</strong> You can edit any of the type on this page in order to preview any particular text. In the controls at the top, select the element you want to modify, and then <em>play!</em> You can change the font, size, line height and color of an element, as well as hide an element altogether.</p>
 			<p>This tool is being actively developed, and some cool requested features are definitely on the roadmap. If you run into any issues, please let me know either through my website or via Twitter.</p>
 		</div>
-	</section>
+
 	
 	<form action="index.php" method="get" accept-charset="utf-8" id="controls">
+		
 		<div class="element">
 			<label for="control_option">Element:</label>
 			<select name="control_option" id="control_option">
@@ -137,6 +143,7 @@ ini_set('display_errors', 'on');
 				<option value="h2">Subhead (H2)</option>
 				<option value="p">Body text (p)</option>
 				<option value="bg">Background</option>
+				<option value="all">Show All</option>
 			</select>
 			
 		</div>
@@ -228,7 +235,9 @@ ini_set('display_errors', 'on');
 		<input type="submit"  id="submit" />
 			
 	</form>
-	</section>
+
+	
+	</section> <!-- end font-combinator -->
 	<section id="about" class="panel">
 		<h1>About stuff goes here</h1>
 		
@@ -247,22 +256,23 @@ ini_set('display_errors', 'on');
 		<p>Total rewrite! lots of stuff going on here.</p>
 	</section>	
 		</div> <!-- end of wrapper -->
-	
+	<div class="footer_wrapper">
+
 	<footer class="clearfix">
-		<div id="logo">
-			WFC
-		</div>
+
 	<nav>
-		<ul id="panel_nav">
-			<li><a href="#font-combinator" class="here">Font Combinator</a></li>
-			<li><a href="#about">About</a></li>
-			<li><a href="#change-log">Change log</a></li>	
-		</ul> <!-- panel_nav -->
+		<!-- <ul id="panel_nav">
+				<li><a href="#font-combinator" class="here">Font Combinator</a></li>
+				<li><a href="#about">About</a></li>
+				<li><a href="#change-log">Change log</a></li>	
+			</ul> --> <!-- panel_nav -->
 		
 	</nav>
 	
 	<p>&copy; <?php echo date("Y") ?> <a href="http://chipcullen.com/" rel="external">Chip Cullen</a></p>
 	</footer>
+		
+	</div> <!-- footer wrapper -->
 	
 	<script type="text/javascript">
 

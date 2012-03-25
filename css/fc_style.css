@@ -1,3 +1,4 @@
+/*padding for elements*/
 /* @group Reset */
 html,
 body,
@@ -161,10 +162,23 @@ em {
 strong {
   font-weight: bold;
 }
+#wrapper p {
+  padding-bottom: 10px;
+}
+.warning {
+  background: rgba(255, 155, 155, 0.8);
+  padding: 15px;
+  -webkit-border-radius: 0.5em;
+  -moz-border-radius: 0.5em;
+  border-radius: 0.5em;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
 /* @end */
 /* @group Structure */
 body {
-  background: purple;
+  background: #292929;
 }
 #wrapper {
   background: white;
@@ -173,10 +187,9 @@ body {
   position: relative;
   margin: 0 auto;
   width: 80%;
-  min-width: 920px;
-  padding-top: 1px;
+  padding-top: 15px;
   display: none;
-  min-height: 500px;
+  min-height: 400px;
   overflow: visible;
 }
 .panel.here {
@@ -186,23 +199,15 @@ body {
   position: absolute;
   color: white;
   width: 100%;
-  top: 0;
+  bottom: -20px;
   left: 0;
   height: 50px;
   padding-top: 10px;
   background: rgba(0, 0, 0, 0.6);
-  -webkit-border-top-right-radius: 0;
-  -webkit-border-bottom-right-radius: 0.5em;
-  -webkit-border-bottom-left-radius: 0.5em;
-  -webkit-border-top-left-radius: 0;
-  -moz-border-radius-topright: 0;
-  -moz-border-radius-bottomright: 0.5em;
-  -moz-border-radius-bottomleft: 0.5em;
-  -moz-border-radius-topleft: 0;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0.5em;
-  border-bottom-left-radius: 0.5em;
-  border-top-left-radius: 0;
+  background: #292929;
+  -webkit-border-radius: 0.5em;
+  -moz-border-radius: 0.5em;
+  border-radius: 0.5em;
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
@@ -214,10 +219,6 @@ body {
   color: black;
   margin-right: 5px;
 }
-.content_main {
-  position: relative;
-  margin: 100px auto 0px auto;
-}
 .control {
   display: none;
 }
@@ -226,7 +227,8 @@ body {
 }
 #control_option {
   float: left;
-  margin: 0 15px;
+  /*margin: 0 15px;*/
+
 }
 #h1lh,
 #h2lh,
@@ -253,8 +255,11 @@ body {
 .size,
 .lh,
 .color {
-  float: left;
-  margin-right: 10px;
+  /*float: left;*/
+
+  clear: both;
+  margin-right: 15px;
+  margin-left: 15px;
 }
 .element label,
 .font-family label,
@@ -266,31 +271,71 @@ body {
   margin-bottom: 3px;
 }
 .element {
-  padding: 0 6px 0 0;
-  margin: 0 10px 0 0;
-  border-right: solid 1px white;
+  padding: 0 0 11.25px 0;
+  margin: 0 15px 11.25px 15px;
+  border-bottom: solid 1px white;
 }
 .element label {
-  margin-left: 15px;
-}
-#control_option_chzn {
   margin-left: 15px;
 }
 .hide_btn {
   padding: 5px 10px;
   margin-top: 15px;
+  margin-left: 15px;
 }
 #hide_controls {
   position: absolute;
+  display: block;
+  text-align: center;
+  line-height: 24px;
+  font-size: 2.5em;
+  text-decoration: none;
   right: 20px;
-  top: 20px;
+  top: 12px;
+  text-indent: 1px;
+  font-famliy: Verdana, Helvetica, Arial, 'sans-serif';
+  color: white;
+  width: 30px;
+  height: 30px;
+  -webkit-border-radius: 10%;
+  -moz-border-radius: 10%;
+  border-radius: 10%;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid white;
+  background: #7d7e7d;
+  /* Old browsers */
+
+  background: -moz-linear-gradient(top, #7d7e7d 0%, #0e0e0e 100%);
+  /* FF3.6+ */
+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7d7e7d), color-stop(100%, #0e0e0e));
+  /* Chrome,Safari4+ */
+
+  background: -webkit-linear-gradient(top, #7d7e7d 0%, #0e0e0e 100%);
+  /* Chrome10+,Safari5.1+ */
+
+  background: -o-linear-gradient(top, #7d7e7d 0%, #0e0e0e 100%);
+  /* Opera 11.10+ */
+
+  background: -ms-linear-gradient(top, #7d7e7d 0%, #0e0e0e 100%);
+  /* IE10+ */
+
+  background: linear-gradient(top, #7d7e7d 0%, #0e0e0e 100%);
+  /* W3C */
+
 }
 /* @end */
 /* @group Navigation */
+.footer_wrapper {
+  background: #292929;
+  /* Old browsers */
+
+}
 footer {
   margin: 0 auto;
   padding: 0;
-  background: red;
   width: 80%;
   min-width: 920px;
 }
@@ -448,3 +493,109 @@ textarea {
   min-height: 1px;
 }
 /* @end */
+/* =============================================================================
+
+   PLACEHOLDER Media Queries for Responsive Design.
+
+   These override the primary ('mobile first') styles
+
+   Modify as content requires.
+
+   ========================================================================== */
+@media only screen and (min-width: 480px) {
+  #h1_select,
+  #h2_select,
+  #p_select,
+  #h1_select_chzn,
+  #h2_select_chzn,
+  #p_select_chzn,
+  .chzn-container,
+  .element,
+  .font-family,
+  .size,
+  .lh,
+  .color {
+    float: left;
+    clear: none;
+    margin-right: 15px;
+    margin-left: 15px;
+  }
+  .control {
+    clear: both;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .panel {
+    padding-top: 80px;
+  }
+  #control_option {
+    float: left;
+    margin: 0 15px;
+  }
+  #h1_select,
+  #h2_select,
+  #p_select,
+  #h1_select_chzn,
+  #h2_select_chzn,
+  #p_select_chzn,
+  .chzn-container,
+  .element,
+  .font-family,
+  .size,
+  .lh,
+  .color {
+    float: left;
+    clear: none;
+    margin-right: 15px;
+    margin-left: 15px;
+  }
+  .control {
+    margin-left: 170px;
+    clear: none;
+  }
+  .element {
+    padding: 0 6px 0 0;
+    margin: 0 10px 0 0;
+    border-right: solid 1px white;
+    border-bottom: none;
+  }
+}
+@media only screen and (min-width: 960px) {
+  .panel {
+    min-width: 920px;
+    padding-top: 80px;
+  }
+  #control_option {
+    float: left;
+    margin: 0 15px;
+  }
+  #h1_select,
+  #h2_select,
+  #p_select,
+  #h1_select_chzn,
+  #h2_select_chzn,
+  #p_select_chzn,
+  .chzn-container,
+  .element,
+  .font-family,
+  .size,
+  .lh,
+  .color {
+    float: left;
+    clear: none;
+    margin-right: 15px;
+    margin-left: 15px;
+  }
+  .control {
+    margin-left: 170px;
+  }
+  .element {
+    padding: 0 6px 0 0;
+    margin: 0 10px 0 0;
+    border-right: solid 1px white;
+    border-bottom: none;
+  }
+  body {
+    background: red;
+  }
+}

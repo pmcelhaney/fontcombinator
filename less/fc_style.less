@@ -3,7 +3,9 @@
 @sans-serif: Verdana, Helvetica, Arial, 'sans-serif';
 @pagewidth: 920px;
 
-
+@fullwidth: @pagewidth+40px;
+@spacing: 15px;  /*padding for elements*/
+@radius: .5em;
 
 
 
@@ -13,8 +15,10 @@
 
 h1 {
 	overflow:visible;
+	
 	font-size: 30px;
 	margin-bottom: 10px;
+	
 }
 
 h2 {
@@ -30,26 +34,35 @@ strong {
 	font-weight: bold;
 }
 
+#wrapper p {
+	padding-bottom: 10px;
+}
+
+.warning {
+	background: rgba(255,155,155,.8);
+	padding: @spacing;
+	.rounded(@radius);
+}
 /* @end */
 
 /* @group Structure */
 
 body {
 	
-	background: purple;
+	background: #292929;
 }
 
 #wrapper {
 background: white;
+
 }
 .panel {
 	position:relative;
 	margin:0 auto;
 	width: 80%;
-	min-width: @pagewidth;
-	padding-top: 1px;
+	padding-top: @spacing;
 	display: none;
-	min-height: 500px;
+	min-height: 400px;
 	overflow: visible;
 }
 
@@ -60,15 +73,16 @@ background: white;
 #controls {
 	position: absolute;
 	color: white;
-	width: 100%;
-	top: 0;
-	left: 0;
-	height: 50px;
-	padding-top: 10px;
-	background: rgba(0,0,0,.6);
-	.border-radius(0,.5em,.5em,0);
-	font-family: @sans-serif;
-	font-size: .75em;
+		width: 100%;
+		bottom: -20px;
+		left: 0;
+		height: 50px;
+		padding-top: 10px;
+		background: rgba(0,0,0,.6);
+		background: #292929;
+		.rounded(@radius);
+		font-family: @sans-serif;
+		font-size: .75em;
 	
 }
 
@@ -77,14 +91,11 @@ background: white;
 	margin-right: 5px;
 }
 
-.content_main {
-	position: relative;
-	margin: 100px auto 0px auto;
-	}
+
 
 .control {
 	display:none;
-
+	
 }
 .control.active {
 	display:block;
@@ -92,7 +103,7 @@ background: white;
 
 #control_option {
 	float:left;
-	margin: 0 15px;
+	/*margin: 0 15px;*/
 }
 
 
@@ -110,8 +121,10 @@ background: white;
 #h1_select, #h2_select, #p_select,
 #h1_select_chzn, #h2_select_chzn, #p_select_chzn, .chzn-container,
  .element, .font-family, .size, .lh, .color {
-	float: left;
-	margin-right: 10px;
+	/*float: left;*/
+	clear:both;
+	margin-right: @spacing;
+	margin-left: @spacing;
 }
 
 .element label, .font-family label,.size label, .lh label, .color label,#bg_sec label {
@@ -120,26 +133,46 @@ background: white;
 }
 
 .element {
-	padding:0 6px 0 0;
-	margin:0 10px 0 0;
-	border-right: solid 1px white;
+	padding:0 0 @spacing*.75 0;
+	margin: 0 @spacing @spacing*.75 @spacing;
+	border-bottom: solid 1px white;
 }
 .element label {
 	margin-left: 15px;
 }
 
 #control_option_chzn {
-	margin-left: 15px;
+	
 }
 .hide_btn {
 	padding: 5px 10px;
-	margin-top: 15px;
+	margin-top: @spacing;
+	margin-left: @spacing;
 }
 
 #hide_controls {
 	position:absolute;
+	display:block;
+	text-align: center;
+	line-height: 24px;
+	font-size: 2.5em;
+	text-decoration: none;
 	right: 20px;
-	top: 20px;
+	top: 12px;
+	text-indent: 1px;
+	font-famliy: @sans-serif;
+	color: white;
+	width: 30px;
+	height: 30px;
+	.rounded(10%);
+	border: 1px solid white;
+	background: #7d7e7d; /* Old browsers */
+	background: -moz-linear-gradient(top, #7d7e7d 0%, #0e0e0e 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7d7e7d), color-stop(100%,#0e0e0e)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #7d7e7d 0%,#0e0e0e 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #7d7e7d 0%,#0e0e0e 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #7d7e7d 0%,#0e0e0e 100%); /* IE10+ */
+	background: linear-gradient(top, #7d7e7d 0%,#0e0e0e 100%); /* W3C */
 }
 
 
@@ -147,10 +180,15 @@ background: white;
 
 
 /* @group Navigation */
+.footer_wrapper {
+	background: #292929; /* Old browsers */
+
+}
+
 footer {
 	margin: 0 auto;
 	padding: 0;
-	background: red;
+	
 	width: 80%;
 	min-width: @pagewidth;
 	
@@ -198,3 +236,34 @@ footer {
 /* @end */
 
 @import "helpers.less";
+
+
+
+/* =============================================================================
+
+   PLACEHOLDER Media Queries for Responsive Design.
+
+   These override the primary ('mobile first') styles
+
+   Modify as content requires.
+
+   ========================================================================== */
+
+
+
+@media only screen and (min-width: 480px) {
+	@import "480.less";
+}
+
+
+
+@media only screen and (min-width: 768px) {
+	@import "768.less";
+}
+
+@media only screen and (min-width: @fullwidth) {
+	@import "fullwidth.less";
+	body { background: red;}
+}
+
+
