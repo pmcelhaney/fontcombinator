@@ -1,9 +1,6 @@
 <?php
-
 error_reporting(E_ALL);
 ini_set('display_errors', 'on');
-
-
 ?>
 
 	<?php
@@ -16,10 +13,7 @@ ini_set('display_errors', 'on');
 		}
 	}
 	
-	
-	if(isset($_GET['bgcolor'])){
-		echo 'body { background-color: #' . $_GET['bgcolor'] . ';';	
-	}
+
 	
 	//loads default system fonts
 	function defaultFonts($elem){
@@ -60,7 +54,7 @@ ini_set('display_errors', 'on');
   <meta charset="utf-8">
  <meta name="HandheldFriendly" content="True">
  <meta name="MobileOptimized" content="320">
- <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1">
+ <meta name="viewport" content="width=device-width,  initial-scale=1">
  <meta name="apple-mobile-web-app-capable" content="yes">
  
 
@@ -92,8 +86,6 @@ ini_set('display_errors', 'on');
 
 	
 	h1 {
-	
-		
 		<?php
 		if(isset($_GET['h1'])){ 
 		   	 echo 'font-family: ' . $_GET['h1'] . ';';	 
@@ -101,7 +93,6 @@ ini_set('display_errors', 'on');
 		if(isset($_GET['h1size'])){ 
 			   	 echo 'font-size: ' . $_GET['h1size'] . 'px;';	 
 			    }
-
 		if(isset($_GET['h1color'])){ 
 			   	 echo 'color: #' . $_GET['h1color'] . ';';	 
 			    }
@@ -144,6 +135,14 @@ ini_set('display_errors', 'on');
 			}
 		?>
 	}
+	<?php
+	if(isset($_GET['bgcolor'])){
+		echo '#wrapper { background-color: #' . $_GET['bgcolor'] . ';';	
+	}
+	
+	
+	?>
+
 	
 	select.variant_select {
 		text-transform: capitalize;
@@ -155,29 +154,19 @@ ini_set('display_errors', 'on');
 		
 
 	<section id="font-combinator" class="panel here">
-	
+		<div id="content_main">
 		<h1 id="h1_text" contenteditable="true">The Web Font Combinator</h1>
 		<h2 id="h2_text" contenteditable="true">A Web Typography Tool</h2>
 		<div id="p_text" contenteditable="true">
 			<p>This tool has been built to allow previewing of font combinations in a <em>fast, browser-based</em> manner. There have been numerous printed books through the years that allowed a designer to put a headline font next to a body font, and this is an attempt to recreate that for the web.</p>
 			<p><strong>Directions:</strong> You can edit any of the type on this page in order to preview any particular text. In the controls at the top, select the element you want to modify, and then <em>play!</em> You can change the font, size, line height and color of an element, as well as hide an element altogether.</p>
-			<p>This tool is being actively developed, and some cool requested features are definitely on the roadmap. If you run into any issues, please let me know either through my website or via Twitter.</p>
-		</div>
-
+			<!-- <p>This tool is being actively developed, and some cool requested features are definitely on the roadmap. If you run into any issues, please let me know either through my website or via Twitter.</p> -->
+		</div>	
+	</div>
+	
+	
 	
 	<form action="index.php" method="get" accept-charset="utf-8" id="controls">
-		
-		<div class="element">
-			<label for="control_option">Element:</label>
-			<select name="control_option" id="control_option">
-				<option value="h1">Headline (H1)</option>
-				<option value="h2">Subhead (H2)</option>
-				<option value="p">Body text (p)</option>
-				<option value="bg">Background</option>
-				<option value="all">Show All</option>
-			</select>
-			
-		</div>
 
 		<section id="h1_sec" class="control active">
 			<div class="font-family">
@@ -305,22 +294,22 @@ ini_set('display_errors', 'on');
 		
 	</nav>
 	
-	<p>&copy; <?php echo date("Y") ?> <a href="http://chipcullen.com/" rel="external">Chip Cullen</a></p>
+	<!-- <p>&copy; <?php //echo date("Y") ?> <a href="http://chipcullen.com/" rel="external">Chip Cullen</a></p> -->
 	</footer>
 		
 	</div> <!-- footer wrapper -->
 	
 	<script type="text/javascript">
-
-	  var _gaq = _gaq || [];
-	  _gaq.push(['_setAccount', 'UA-22598536-1']);
-	  _gaq.push(['_trackPageview']);
-
-	  (function() {
-	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	  })();
+	// TODO - reenable google analytics
+	  // var _gaq = _gaq || [];
+	  // 	  _gaq.push(['_setAccount', 'UA-22598536-1']);
+	  // 	  _gaq.push(['_trackPageview']);
+	  // 
+	  // 	  (function() {
+	  // 	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	  // 	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	  // 	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  // 	  })();
 
 	</script>	
 </body>

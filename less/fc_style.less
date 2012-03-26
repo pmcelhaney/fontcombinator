@@ -16,12 +16,13 @@ h1 {
 	
 	font-size: 30px;
 	margin-bottom: 10px;
-	
+	text-rendering: optimizeLegibility;
 }
 
 h2 {
 	margin-bottom: 7px;
 	font-size: 20px;
+	text-rendering: optimizeLegibility;
 }
 
 em {
@@ -60,14 +61,18 @@ background: white;
 	width: 80%;
 	padding-top: @spacing;
 	display: none;
-	min-height: 400px;
+	min-height: 420px;
 	overflow: visible;
 }
 
 .panel.here {
 	display: block;
 }
-
+#content_main {
+	height: 480px;
+	overflow: scroll;
+	padding-bottom: 40px;
+}
 #controls {
 	position: absolute;
 	color: white;
@@ -95,7 +100,7 @@ background: white;
 	display:none;
 	
 }
-.control.active {
+.control.active, .no-js .control {
 	display:block;
 }
 
@@ -106,7 +111,7 @@ background: white;
 
 
 #h1lh, #h2lh, #plh{
-	width:50px;
+	/*width:50px;*/
 }
 #h1color, #h2color, #pcolor {
 	width: 60px;
@@ -117,14 +122,18 @@ background: white;
 }
 
 #h1_select, #h2_select, #p_select,
-#h1_select_chzn, #h2_select_chzn, #p_select_chzn, .chzn-container,
- .element, .font-family, .size, .lh, .color {
+#h1_select_chzn, #h2_select_chzn, #p_select_chzn
+ {
 	/*float: left;*/
 	clear:both;
 	margin-right: @spacing;
-	margin-left: @spacing;
+
 }
 
+ .element, .font-family, .size, .lh, .color {
+ 	margin-left: @spacing;
+ 	margin-bottom: @spacing*.75;
+ }
 .element label, .font-family label,.size label, .lh label, .color label,#bg_sec label {
 	display: block;
 	margin-bottom:3px;
@@ -134,10 +143,9 @@ background: white;
 	padding:0 0 @spacing*.75 0;
 	margin: 0 @spacing @spacing*.75 @spacing;
 	border-bottom: solid 1px white;
+	width: 90%;
 }
-.element label {
-	margin-left: 15px;
-}
+
 
 #control_option_chzn {
 	
@@ -188,7 +196,7 @@ footer {
 	padding: 0;
 	
 	width: 80%;
-	min-width: @pagewidth;
+	/*min-width: @pagewidth;*/
 	
 }
 
