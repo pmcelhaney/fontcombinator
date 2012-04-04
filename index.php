@@ -80,63 +80,8 @@ ini_set('display_errors', 'on');
 
 	<title>The Web Font Combinator</title>
 	
-<<<<<<< HEAD
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script> 
 
-	<script src="javascript/fc_functions.js" type="text/javascript" charset="utf-8"></script>
-	
-	
-	<style type="text/css" media="screen">
-	* {
-		margin: 0;
-		padding: 0;
-		font-weight: regular;
-	}
-	
-	h1 {
-		font-size: 30px;
-		font-size: regular;
-		<?php
-		if(isset($_GET['h1'])){ 
-		   	 echo 'font-family: ' . $_GET['h1'] . ';';	 
-		    }
-		if(isset($_GET['h1size'])){ 
-			   	 echo 'font-size: ' . $_GET['h1size'] . 'px;';	 
-			    }
-			
-		if(isset($_GET['h1w'])){ 
-			   	 echo 'font-weight: ' . $_GET['h1w'] . ';';	 
-			    }
-		if(isset($_GET['h1s'])){ 
-			   	 echo 'font-style: ' . $_GET['h1s'] . ';';	 
-			    }
-	
-		if(isset($_GET['h1color'])){ 
-			   	 echo 'color: #' . $_GET['h1color'] . ';';	 
-			    }
-		?>
-	}
-	
-	h2 {
-		font-size: 20px;
-		<?php
-		if(isset($_GET['h2'])){ 
-		   	 echo 'font-family: ' . $_GET['h2'] . ';';	 
-		    }
-		if(isset($_GET['h2size'])){ 
-	   	 echo 'font-size: ' . $_GET['h2size'] . 'px;';	 
-	    }
-	
-		if(isset($_GET['h2color'])){ 
-				echo 'color: #' . $_GET['h2color'] . ';';	 
-			}
-		?>
-	}
-	
-	p {
-		font-size: 16px;
-		line-height: 1.4;
-=======
+
 	<link rel="stylesheet" href="css/fc_style.css" type="text/css" media="screen" title="no title" />
 	<link rel="stylesheet" href="javascript/chosen/chosen.css" type="text/css" media="screen" title="no title" />
 	
@@ -149,23 +94,13 @@ ini_set('display_errors', 'on');
 	}
 	</script>
 	
-	<script type="text/javascript" charset="utf-8">
-	// $(document).ready(function() {
-	// 	$('body').addClass('gfonts');
-	// });
-	
-	</script>
+
 
 	
 
 	
 	<style type="text/css" media="screen">
-	* {
-		margin: 0;
-		padding: 0;
-		font-weight: regular;
-	}
-	
+
 
 	
 	h1 {
@@ -201,16 +136,12 @@ ini_set('display_errors', 'on');
 	p {
 		font-size: 16px;
 		line-height: 1.40;
->>>>>>> fontchanging
 		<?php
 		if(isset($_GET['p'])){ 
 		   	 echo 'font-family: ' . $_GET['p'] . ';';	 
 		    }
-<<<<<<< HEAD
-		if(isset($_GET['h2size'])){ 
-=======
+
 		if(isset($_GET['psize'])){ 
->>>>>>> fontchanging
 	   	 echo 'font-size: ' . $_GET['psize'] . 'px;';	 
 	    }
 	
@@ -223,67 +154,22 @@ ini_set('display_errors', 'on');
 			}
 		?>
 	}
-<<<<<<< HEAD
 	</style>	
 </head>
-<body>
-	
-	<form action="index.php" method="get" accept-charset="utf-8">
 
-
-		<section id="h1_sec">
-			<h1 id="the_web_font_combinator" contenteditable="true">The Web Font Combinator</h1>
-			<select name="h1" id="h1_select">
-				<?php 
-					include 'default_font_list_h1.php';
-				?>	
-			</select>
-			<label for="h1size">Size:</label>
-			<input type="number" name="h1size" value="<?php if(isset($_GET['h1size'])) {echo $_GET['h1size']; } else { echo '30'; } ?>"  id="h1size" />px
-			<label for="h1w">Weight:</label>
-			<select name="h1w" id="h1w">
-				<option value="regular">Regular</option>
-				<option value="bold">Bold</option>
-			</select>
-			<label for="h1s">Style:</label>
-			<select name="h1s" id="h1s">
-				<option value="normal">Normal</option>
-				<option value="italic">Italic</option>
-			</select>
-			
-=======
-	<?php
-	if(isset($_GET['bgcolor'])){
-		echo '#wrapper { background-color: #' . $_GET['bgcolor'] . ';';	
-	}
-	
-	
-	?>
-
-	
-	select.variant_select {
-		text-transform: capitalize;
-	}
-	</style>	
 </head>
 <body>
 	<div id="wrapper">
 		
 	<section id="font-combinator" class="panel here">
 		<div id="content_main">
-		<h1 id="h1_text" contenteditable="true">The Web Font Combinator</h1>
-		<h2 id="h2_text" contenteditable="true">A Web Typography Tool</h2>
-		<div id="p_text" contenteditable="true">
-			<p>This tool has been built to allow previewing of font combinations in a <em>fast, browser-based</em> manner. There have been numerous printed books through the years that allowed a designer to put a headline font next to a body font, and this is an attempt to recreate that for the web.</p>
-			<p><strong>Directions:</strong> You can edit any of the type on this page in order to preview any particular text. In the controls at the top, select the element you want to modify, and then <em>play!</em> You can change the font, size, line height and color of an element, as well as hide an element altogether.</p>
-			<!-- <p>This tool is being actively developed, and some cool requested features are definitely on the roadmap. If you run into any issues, please let me know either through my website or via Twitter.</p> -->
-		</div>	
+			<h1 id="h1_text" contenteditable="true">The Web Font Combinator</h1>
+			<h2 id="h2_text" contenteditable="true">A Web Typography Tool</h2>
+			<div id="p_text" contenteditable="true">
+				<p>This tool has been built to allow previewing of font combinations in a <em>fast, browser-based</em> manner. There have been numerous printed books through the years that allowed a designer to put a headline font next to a body font, and this is an attempt to recreate that for the web.</p>
+				<p><strong>Directions:</strong> You can edit any of the type on this page in order to preview any particular text. In the controls at the top, select the element you want to modify, and then <em>play!</em> You can change the font, size, line height and color of an element, as well as hide an element altogether.</p>
+			</div>	
 	</div>
-	
-	
-	
-	
-	
 	</section> <!-- end font-combinator -->
 	<section id="about" class="panel">
 		<h1>About stuff goes here</h1>
@@ -308,7 +194,7 @@ ini_set('display_errors', 'on');
 
 		
 		<form action="index.php" method="get" accept-charset="utf-8" id="controls">
->>>>>>> fontchanging
+
 
 			<section id="h1_sec" class="control active">
 				<div class="font-family">
@@ -380,11 +266,6 @@ ini_set('display_errors', 'on');
 				<select class="variant_select" id="p_variant" name="pv">
 					<?php defaultVariant('pv'); ?>
 				<select>
-			
-<<<<<<< HEAD
-		</section>
-		<input type="submit"  id="submit" />
-=======
 				</div>
 				<div class="size">
 					<label for="psize">Size:</label>
@@ -408,7 +289,7 @@ ini_set('display_errors', 'on');
 			</section>	
 		
 			<input type="submit"  id="submit" />
->>>>>>> fontchanging
+
 			
 		</form>
 		

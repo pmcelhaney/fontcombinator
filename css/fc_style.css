@@ -551,35 +551,8 @@ textarea {
   .panel {
     min-height: 320px;
   }
-  #content_main {
-    background: red;
-  }
-  #h1_select,
-  #h2_select,
-  #p_select,
-  #h1_select_chzn,
-  #h2_select_chzn,
-  #p_select_chzn,
-  .chzn-container,
-  .element,
-  .font-family,
-  .size,
-  .lh,
-  .color {
-    /*	float: left;
-  	clear:none;
-  	margin-right: @spacing;
-  	margin-left: @spacing;*/
-  
-  }
-  .control {
-    clear: both;
-  }
 }
 @media only screen and (min-width: 768px) {
-  #content_main {
-    background: green;
-  }
   .panel {
     padding-top: 80px;
   }
@@ -630,9 +603,6 @@ textarea {
   }
 }
 @media only screen and (min-width: 960px) {
-  #content_main {
-    background: orange;
-  }
   .panel {
     min-width: 920px;
     padding-top: 80px;

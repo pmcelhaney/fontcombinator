@@ -1,123 +1,3 @@
-<<<<<<< HEAD
-console.log('is this thing on?');
-
-	//$(document).ready(function($) {
-
-		//*/
-		// function renderFontList(fonts) {
-		// 		var template = "<option class='font' style='font-family:%name%'><h3>%name%</h3></option>",
-		// 		variantsTemplate = "<li style='%style%'>%variant%</li>",
-		// 		variantsList = "",
-		// 		specimenUrlPrefix = "http://www.google.com/webfonts/specimen/",
-		// 		html = "",
-		// 		fontData;
-		// 
-		// 	$.each(fonts, function(i, val) {
-		// 		variantsList = "";
-		// 		$.each(val.variants, function(ii,vv){
-		// 			variantsList += templatify(variantsTemplate, {variant: nicerVariant(vv), style: variantStyle(vv)})
-		// 		})
-		// 		html += templatify(template, {
-		// 			'name': val.family,
-		// 			'extlink': specimenUrlPrefix + encodeURIComponent(val.family),
-		// 			'variants': variantsList
-		// 		})
-		// 	})
-		// 	target.html(html)
-		// }
-		// 
-		// function templatify(html, data) {
-		// 					var r
-		// 					$.each(data, function(i,val){
-		// 						r = new RegExp('%'+i+'%', 'g')
-		// 						html = html.replace(r, val);
-		// 					})
-		// 					return html
-		// 				}
-		// 
-		// function nicerVariant(variant) {
-		// 	return variant.replace('italic', ' italic')
-		// }
-		// 
-		// function variantStyle(variant) {
-		// 	var text = variant.replace(/regular/i, '400').replace(/bold/i, '700'),
-		// 		isItalic = /italic/.test(text),
-		// 		weight = text.replace('italic', ''),
-		// 		style = (weight !== '') ? 'font-weight:'+weight+';' : ''
-		// 	return (isItalic) ? style + 'font-style:italic;'  : style
-		// }
-		// 
-
-
-		//});
-		
-
-
-
-$(document).ready(function() {
-	
-	var targets = '#h1_select, #h2_select, #p_select';  //these are used throughout
-	
-	
-	
-	// ajax call
-	$.ajax({
-		url: 'https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyAc3a2WfPaSbA1B25u78zFQRfAide8T34c&sort=alpha&sort=desc',
-		dataType: 'jsonp',
-		//jsonp: 'onJson()',
-		success: onJson,
-		error: noLove
-	});
-	
-	// ajax success function
-	function onJson(data){
-		if(data.kind === "webfonts#webfontList"){
-			getFonts(data.items);
-		} else {
-			noLove();
-		}
-	}
-	
-	//error message
-	function noLove(){
-		//error message goes here
-	}
-	
-	
-	// font calls and option set up
-	function getFonts(fontList){
-		var base = "http://fonts.googleapis.com/css?family=";
-		var defaultList = $('#h1_select').children();
-		console.log(defaultList);
-		
-		$(targets).empty();
-		$(targets).append('<option disabled>*** Google Fonts ***</option>');
-		for (var i=0; i < fontList.length; i++) {
-			//this tool is for latin fonts only so far - sorry, cyrellic and greek
-			if(fontList[i].subsets.indexOf('latin') != -1){
-				var fontName = fontList[i].family;
-				var fontCallName = fontList[i].family.replace(/\s+/g, '+');
-				var fontNameLetters = fontList[i].family.replace(/\s+/g, '');
-				$('<link rel="stylesheet" href="' + base + fontCallName +'&subset=latin&text=' + fontNameLetters +'" />').appendTo('head');
-				$(targets).append('<option value="'+ fontName +'">'+ fontName +'</option>');
-			}
-		};
-		$(targets).append('<option disabled>*** System Fonts ***</option>');
-		$(targets).append(defaultList);
-	}
-	
-	// hiding submit button when JS is present
-	$('#submit').hide();
-	
-	$(targets).change(function(){
-		
-	});
-	
-});
-
-	
-
-=======
 $(document).ready(function () {
 	$('html').removeClass('no-js');
 
@@ -125,6 +5,11 @@ $(document).ready(function () {
 		//globals that are used throughout
 		targets = '#h1_select, #h2_select, #p_select';
 		defaultVarients = "#h1_variant, #h2_variant, #p_variant";
+		defaultFonts = new Array(
+			h1 = 'Ultra',
+			h2 = 'Trebuchet MS',
+			p = 'Trebuchet MS'
+		);
 		delay = 2000;  //delay used throughout the interface
 	}
 
@@ -140,10 +25,10 @@ $(document).ready(function () {
 		var base = "http://fonts.googleapis.com/css?family=";
 		var defaultList = $('#h1_select').children();
 		$(targets).empty();
-		$(targets).append('<option disabled>*** Google Fonts ***</option>');
+		//$(targets).append('<option>*** Google Fonts ***</option>');
 		for (var i=0, j = fontList.length; i < j; i+=1) {	
 			//this tool is for latin fonts only so far - sorry, Cyrillic and Greek
-			if(fontList[i].subsets.indexOf('latin') !== -1 && fontList[i].family !== 'Ultra') {
+			if(fontList[i].subsets.indexOf('latin') !== -1) {
 				var fontName = fontList[i].family;
 				var fontCallName = fontList[i].family.replace(/\s+/g, '+');
 				var fontNameLetters = fontList[i].family.replace(/\s+/g, '');
@@ -152,12 +37,19 @@ $(document).ready(function () {
 				$('<link rel="stylesheet" href="' + base + fontCallName +'&subset=latin&text=' + fontNameLetters +'"  type="text/css" />').appendTo('head');
 			}
 		}
-		//adding default font choice to head of the document, but only if Google Fonts API is reached
-		
+				
 		//readding the default font list so it appears at the end of the <select> and everything is ordered properly
-		$(targets).append('<option>*** System Fonts ***</option>');
+		$(targets).append('<option>* System Fonts *</option>');
 		$(targets).append(defaultList);
+		$('#h1_select option[selected], #h2_select option[selected], #p_select option[selected]').removeAttr('selected');
+		$('#h1_select option[value="'+defaultFonts[0]+'"]').attr("selected", "selected");
+		$('#h2_select option[value="'+defaultFonts[1]+'"]').attr("selected", "selected");
+		$('#p_select option[value="'+defaultFonts[1]+'"]').attr("selected", "selected");
 		chosenAttach();
+		$('#h1_select_chzn a.chzn-single span').css('font-family', defaultFonts[0]);
+		$('#h2_select_chzn a.chzn-single span').css('font-family', defaultFonts[1]);
+		$('#p_select_chzn a.chzn-single span').css('font-family', defaultFonts[2]);
+		
 		
 	}
 	
@@ -243,7 +135,7 @@ $(document).ready(function () {
 			if(fontName === 'Arial'|| fontName === 'Garamond' || fontName === 'Georgia'|| fontName === 'Helvetica' || fontName === 'Lucida Grande'|| fontName === 'Palatino' || fontName === 'Tahoma'|| fontName === 'Times New Roman' || fontName === 'Trebuchet MS'|| fontName === 'Verdana') {
 				$("#" + elem + "_select_chzn .chzn-single").css('font-family', fontName);
 				$('<select class="variant_select" id="'+ elem +'_variant" name="'+ elem +'v"><option value="400" selected>400</option><option value="400 italic">400 italic</option><option value="bold">Bold</option><option value="bold italic">Bold italic</option><select>').insertAfter('#' +elem + '_select_chzn');
-				
+				$('#' + elem + '_variant').chosen();
 				$('#' + elem + '_variant_chzn').css({'font-family':fontName, 'min-width':'90px'});
 				$('#' + elem + '_variant_chzn div.chzn-drop').css('width', '88px');
 				$('#' + elem + '_variant_chzn').find('input').css('width', '53px');
@@ -257,6 +149,7 @@ $(document).ready(function () {
 				}
 				});
 			}
+			
 			//actually, you know, change fonts
 			$(elem).css('font-family', fontName);
 
@@ -282,11 +175,6 @@ $(document).ready(function () {
 		
 	}
 	
-	function defaultSelections(){
-		$('#h1_select option[value="Ultra"]').attr('selected','selected');
-		
-	}
-	defaultSelections();
 	//this function fires in the event Google Fonts is not available
 	function defaultFontChange() {
 		
@@ -505,5 +393,5 @@ $(document).ready(function () {
 // - STYLE - nice design this time, k?
 // - add background texture additions
 // - add bookmarkable string
->>>>>>> fontchanging
+
 	
