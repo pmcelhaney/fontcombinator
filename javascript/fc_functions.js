@@ -49,8 +49,7 @@ $(document).ready(function () {
 		$('#h1_select_chzn a.chzn-single span').css('font-family', defaultFonts[0]);
 		$('#h2_select_chzn a.chzn-single span').css('font-family', defaultFonts[1]);
 		$('#p_select_chzn a.chzn-single span').css('font-family', defaultFonts[2]);
-		
-		
+				
 	}
 	
 
@@ -61,6 +60,7 @@ $(document).ready(function () {
 	$('<div class="element"> <label for="control_option">Element:</label> <select name="control_option" id="control_option"> <option value="h1">Headline (H1)</option> <option value="h2">Subhead (H2)</option> <option value="p">Body text (p)</option> <option value="bg">Background</option> </select> </div>').prependTo('#controls');
 	
 	function changeFonts(fontList) {
+		
 		$(targets).change(function() {
 			var base = "http://fonts.googleapis.com/css?family=";
 			var fontName = $(this).val();
@@ -81,11 +81,10 @@ $(document).ready(function () {
 				//checking to see if the selected font has more than one variant
 				if(fontList[i].family === fontName && variants.length > 1) {
 					var variantCall = variants.toString();
-					
+					// console.log('yo');
 					//adding stylesheet call with all variants
 					$('<link rel="stylesheet" href="' + base + fontName.replace(/\s+/g, '+') +':' + variantCall + '&subset=latin" type="text/css" />').appendTo('head');
 					//create a drop down menu
-					//$('<label for="'+ elem +'_variant">Variant:</label>').insertBefore('#' +elem + '_select_chzn');
 					$('<select class="variant_select" id="'+ elem +'_variant" name="'+ elem +'v"><select>').insertAfter('#' +elem + '_select_chzn');
 					for (var j=0; j < variants.length; j++) {
 						var variantName = variants[j].replace('italic',' italic');
@@ -123,6 +122,7 @@ $(document).ready(function () {
 					
 					return false;  //had to throw this in to stop infinite loop
 				} else if(fontList[i].family === fontName) {
+					// console.log('yo1');
 					//do something else when there is only one variant
 					//adding plain stylesheet call w/ no variant addendum
 					$('<link rel="stylesheet" href="' + base + fontName.replace(/\s+/g, '+') +'&subset=latin" type="text/css"  />').appendTo('head');
@@ -325,10 +325,8 @@ $(document).ready(function () {
 			if($(this).hasClass(activeClass)) {
 				//do nothing
 			} else {
-				
 				$('.'+changingContentClass+'.'+activeClass).fadeOut(speed, function() {
 					var color = $('.here').css('backgroundColor');
-					console.log(color);
 					$('.'+activeClass).removeClass(activeClass);
 					$(clickLink).addClass(activeClass);
 					$(link).fadeIn(speed, function() {
@@ -389,7 +387,7 @@ $(document).ready(function () {
 
 // TODO:
 
-// - add footer/explanation
+
 // - STYLE - nice design this time, k?
 // - add background texture additions
 // - add bookmarkable string
