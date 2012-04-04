@@ -1,69 +1,43 @@
 $(document).ready(function () {
 	$('html').removeClass('no-js');
-	var targets = '#h1_select, #h2_select, #p_select';
+
 	function config() {
 		//globals that are used throughout
-		  //elements that trigger font changes
+		targets = '#h1_select, #h2_select, #p_select';
+		defaultVarients = "#h1_variant, #h2_variant, #p_variant";
 		delay = 2000;  //delay used throughout the interface
 	}
 
 	config();
 	// ajax call
-	$.ajax({
-		url: 'https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyAc3a2WfPaSbA1B25u78zFQRfAide8T34c&sort=alpha&sort=desc',
-		dataType: 'jsonp',
-		success: onJson,
-		error: noLove
-	});
 
-	
-	
-	// ajax success function
-	function onJson(data) {
-		if (data.kind === "webfonts#webfontList") {
-			getFonts(data.items);
-			changeFonts(data.items);
-		} else {
-			noLove();
-		}
-	}
-	
-	//error message
-	function noLove() {
-		$('<h2 class="warning">I&rsquo;m sorry, but we can&rsquo;t seem to reach Google Fonts.</h2>').prependTo('#font-combinator').delay(delay).fadeOut('slow');
-		defaultFontChange();
-	}
 	
 
 	// font calls and option set up
 	function getFonts(fontList) {
+		//removing default variants from DOM when Google responds
+		$(defaultVarients).remove();
 		var base = "http://fonts.googleapis.com/css?family=";
 		var defaultList = $('#h1_select').children();
 		$(targets).empty();
 		$(targets).append('<option disabled>*** Google Fonts ***</option>');
-		for (var i=0; i < fontList.length; i++) {
-			
+		for (var i=0, j = fontList.length; i < j; i+=1) {	
 			//this tool is for latin fonts only so far - sorry, Cyrillic and Greek
-			if(fontList[i].subsets.indexOf('latin') !== -1) {
-				
+			if(fontList[i].subsets.indexOf('latin') !== -1 && fontList[i].family !== 'Ultra') {
 				var fontName = fontList[i].family;
 				var fontCallName = fontList[i].family.replace(/\s+/g, '+');
 				var fontNameLetters = fontList[i].family.replace(/\s+/g, '');
 				//this adds the stylesheet link to Google Web Fonts, but with only the font's name as a subset of characters, for performance
-				$('<link rel="stylesheet" href="' + base + fontCallName +'&subset=latin&text=' + fontNameLetters +'"  type="text/css" />').appendTo('head');
-				
 				$(targets).append('<option value="'+ fontName +'">'+ fontName +'</option>');
-		
+				$('<link rel="stylesheet" href="' + base + fontCallName +'&subset=latin&text=' + fontNameLetters +'"  type="text/css" />').appendTo('head');
 			}
 		}
+		//adding default font choice to head of the document, but only if Google Fonts API is reached
+		
 		//readding the default font list so it appears at the end of the <select> and everything is ordered properly
 		$(targets).append('<option>*** System Fonts ***</option>');
 		$(targets).append(defaultList);
-		$(targets).chosen();
-		$('.chzn-container').css('width','180px');
-		$('li.active-result').each(function() {
-			$(this).css('font-family', $(this).html());
-		});
+		chosenAttach();
 		
 	}
 	
@@ -72,13 +46,10 @@ $(document).ready(function () {
 	// hiding submit button when JS is present
 	$('#submit').hide();
 	
-	$('<div class="element"> <label for="control_option">Element:</label> <select name="control_option" id="control_option"> <option value="h1">Headline (H1)</option> <option value="h2">Subhead (H2)</option> <option value="p">Body text (p)</option> <option value="bg">Background</option> <option value="all">Show All</option> </select> </div>').prependTo('#controls');
+	$('<div class="element"> <label for="control_option">Element:</label> <select name="control_option" id="control_option"> <option value="h1">Headline (H1)</option> <option value="h2">Subhead (H2)</option> <option value="p">Body text (p)</option> <option value="bg">Background</option> </select> </div>').prependTo('#controls');
 	
 	function changeFonts(fontList) {
-
-		
 		$(targets).change(function() {
-			
 			var base = "http://fonts.googleapis.com/css?family=";
 			var fontName = $(this).val();
 			
@@ -102,9 +73,10 @@ $(document).ready(function () {
 					//adding stylesheet call with all variants
 					$('<link rel="stylesheet" href="' + base + fontName.replace(/\s+/g, '+') +':' + variantCall + '&subset=latin" type="text/css" />').appendTo('head');
 					//create a drop down menu
+					//$('<label for="'+ elem +'_variant">Variant:</label>').insertBefore('#' +elem + '_select_chzn');
 					$('<select class="variant_select" id="'+ elem +'_variant" name="'+ elem +'v"><select>').insertAfter('#' +elem + '_select_chzn');
-					for (var i=0; i < variants.length; i++) {
-						var variantName = variants[i].replace('italic',' italic');
+					for (var j=0; j < variants.length; j++) {
+						var variantName = variants[j].replace('italic',' italic');
 						//special handling of variants results
 						if(variantName === 'regular') {
 							$('<option value="400" selected>400</option>').appendTo('#' + elem +'_variant');
@@ -121,7 +93,9 @@ $(document).ready(function () {
 					$(elem).css('font-family', fontName).css('font-weight', '400');
 					//get the chosen drop down to take on the css style
 					$("#" + elem + "_select_chzn .chzn-single").css('font-family', fontName);
+					
 					$('.variant_select').chosen();
+
 					
 					$('#' + elem + '_variant_chzn li').each(function() {
 						$(this).css('font-family', fontName);
@@ -131,7 +105,10 @@ $(document).ready(function () {
 							$(this).css('font-weight', $(this).html().split(' italic')[0]).css('font-style','italic');
 						}
 					});
-						
+					$('#' + elem + '_variant_chzn').css({'font-family':fontName, 'min-width':'90px'});
+					$('#' + elem + '_variant_chzn div.chzn-drop').css('width', '88px');
+					$('#' + elem + '_variant_chzn').find('input').css('width', '53px');
+					
 					return false;  //had to throw this in to stop infinite loop
 				} else if(fontList[i].family === fontName) {
 					//do something else when there is only one variant
@@ -142,11 +119,14 @@ $(document).ready(function () {
 				}
 			} //end of variant for loop
 			
+			//system fonts
 			if(fontName === 'Arial'|| fontName === 'Garamond' || fontName === 'Georgia'|| fontName === 'Helvetica' || fontName === 'Lucida Grande'|| fontName === 'Palatino' || fontName === 'Tahoma'|| fontName === 'Times New Roman' || fontName === 'Trebuchet MS'|| fontName === 'Verdana') {
 				$("#" + elem + "_select_chzn .chzn-single").css('font-family', fontName);
-				$('<select class="variant_select" id="'+ elem +'_variant" name="'+ elem +'v"><option value="400" selected>400</option><option value="400 italic">400 italic</option><option>Bold</option><option>Bold italic</option><select>').insertAfter('#' +elem + '_select_chzn');
+				$('<select class="variant_select" id="'+ elem +'_variant" name="'+ elem +'v"><option value="400" selected>400</option><option value="400 italic">400 italic</option><option value="bold">Bold</option><option value="bold italic">Bold italic</option><select>').insertAfter('#' +elem + '_select_chzn');
 				
 				$('#' + elem + '_variant_chzn').css({'font-family':fontName, 'min-width':'90px'});
+				$('#' + elem + '_variant_chzn div.chzn-drop').css('width', '88px');
+				$('#' + elem + '_variant_chzn').find('input').css('width', '53px');
 
 				$('#' + elem + '_variant_chzn li').each(function() {
 				$(this).css('font-family', fontName);
@@ -167,26 +147,26 @@ $(document).ready(function () {
 	
 	function chosenAttach() {
 		
-					
-			
-		// $('#' + elem + '_variant_chzn').css({'font-family':fontName, 'min-width':'90px'});
-		// $('#' + elem + '_variant_chzn div.chzn-drop').css('width', '88px');
-		// $('#' + elem + '_variant_chzn').find('input').css('width', '53px');
-		
-		// $('#' + elem + '_variant_chzn div.chzn-drop').css('width', '88px');
-		// $('#' + elem + '_variant_chzn').find('input').css('width', '53px');
-		
+		$(targets).chosen();
+		$(defaultVarients).chosen();
+		$('.chzn-container').css('width','180px');
+		$('#h1_select_chzn .active-result, #h2_select_chzn .active-result, #p_select_chzn .active-result').each(function() {
+			$(this).css('font-family', $(this).html());
+		});
 		
 		$('#control_option').chosen();
-		$('#control_option_chzn').css('width','100%');
+		$('#control_option_chzn').css('width','90%');
 		$('#control_option_chzn .chzn-drop').css('width', '100%');
 		$('#control_option_chzn .chzn-search').remove();
 		
-		$// ('.variant_select').chosen();
+		
 	}
 	
-	
-	
+	function defaultSelections(){
+		$('#h1_select option[value="Ultra"]').attr('selected','selected');
+		
+	}
+	defaultSelections();
 	//this function fires in the event Google Fonts is not available
 	function defaultFontChange() {
 		
@@ -195,10 +175,13 @@ $(document).ready(function () {
 			
 			//handy way to target the right element based on which select changed
 			var elem = $(this).attr('id').split('_select')[0];
-			
-			console.log(elem + ' should change to ' + fontName);
 			$(elem).css('font-family', fontName);
+			
 		});
+		chosenAttach();
+		
+
+		
 	}
 	
 	function variantChange() {
@@ -269,7 +252,7 @@ $(document).ready(function () {
 			onChange: function(hsb, hex, rgb, el) {
 				$('#' + thisEl).val(hex);
 				$(el).ColorPickerHide();
-				$('#wrapper, #panel_nav .here').css('background-color', '#'+hex);
+				$('#wrapper').css('background-color', '#'+hex);
 			},
 			onBeforeShow: function () {
 				$(this).ColorPickerSetColor(this.value);
@@ -287,9 +270,9 @@ $(document).ready(function () {
 				$(thisElem).css('color', '#'+ $(this).val());
 			});
 
-		}	
+		}
 		
-	}	
+	}
 	colorChange();
 	
 	$('#h1_hide, #h2_hide, #p_hide').on('click',function() {
@@ -301,21 +284,9 @@ $(document).ready(function () {
 				$(elem).fadeIn('slow');
 				$(this).val('Hide');
 			}
-	});	
+	});
 
 
-	//$('<a href="#" id="hide_controls">-</a>').insertAfter('#controls');
-	
-	// $('#hide_controls').on('click',function() {
-	//		$('#controls').slideToggle('slow');
-	//		if($(this).text()=='-') {
-	//			$(this).text('+');
-	//		} else {
-	//			$(this).text('-')
-	//		}
-	//		return false;
-	// });
-	
 	$('body').attr('spellcheck',false); //because of firefox's spellcheck, which has a nasty red underline
 	
 	$('#control_option').on('change',function() {
@@ -377,14 +348,32 @@ $(document).ready(function () {
 	}
 	externalLinks();
 	
+	
+	var req = $.ajax({
+	    url: 'https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyAc3a2WfPaSbA1B25u78zFQRfAide8T34c&sort=alpha&sort=desc',
+	    dataType : "jsonp",
+	    timeout : 4000,
+		success: onJson
+	});
+
+	req.error(function() {
+		$('<h2 class="warning">I&rsquo;m sorry, but we can&rsquo;t seem to reach Google Fonts.</h2>').prependTo('#font-combinator').delay(delay).fadeOut('slow');
+		defaultFontChange();
+	});
 
 	
+	// ajax success function
+	function onJson(data) {
+		if (data.kind === "webfonts#webfontList") {
+			getFonts(data.items);
+			changeFonts(data.items);
+		} else {
+			
+			noLove();
+		}
+	}
+	
 
-	
-	
-	
-
-	
 });
 
 
