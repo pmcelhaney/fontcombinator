@@ -34,7 +34,7 @@ $(document).ready(function () {
 				var fontNameLetters = fontList[i].family.replace(/\s+/g, '');
 				//this adds the stylesheet link to Google Web Fonts, but with only the font's name as a subset of characters, for performance
 				$(targets).append('<option value="'+ fontName +'">'+ fontName +'</option>');
-				$('<link rel="stylesheet" href="' + base + fontCallName +'&subset=latin&text=' + fontNameLetters +'"  type="text/css" />').appendTo('head');
+				$('<link rel="stylesheet" href="' + base + fontCallName +'&subset=latin&text=' + fontNameLetters +'"  type="text/css" />').prependTo('head');
 			}
 		}
 				
@@ -46,9 +46,9 @@ $(document).ready(function () {
 		$('#h2_select option[value="'+defaultFonts[1]+'"]').attr("selected", "selected");
 		$('#p_select option[value="'+defaultFonts[1]+'"]').attr("selected", "selected");
 		chosenAttach();
-		$('#h1_select_chzn a.chzn-single span').css('font-family', defaultFonts[0]);
-		$('#h2_select_chzn a.chzn-single span').css('font-family', defaultFonts[1]);
-		$('#p_select_chzn a.chzn-single span').css('font-family', defaultFonts[2]);
+		$('#h1_select_chzn .chzn-single').css('font-family', defaultFonts[0]);
+		$('#h2_select_chzn .chzn-single').css('font-family', defaultFonts[1]);
+		$('#p_select_chzn .chzn-single').css('font-family', defaultFonts[2]);
 				
 	}
 	
@@ -83,7 +83,7 @@ $(document).ready(function () {
 					var variantCall = variants.toString();
 					// console.log('yo');
 					//adding stylesheet call with all variants
-					$('<link rel="stylesheet" href="' + base + fontName.replace(/\s+/g, '+') +':' + variantCall + '&subset=latin" type="text/css" />').appendTo('head');
+					$('<link rel="stylesheet" href="' + base + fontName.replace(/\s+/g, '+') +':' + variantCall + '&subset=latin" type="text/css" />').prependTo('head');
 					//create a drop down menu
 					$('<select class="variant_select" id="'+ elem +'_variant" name="'+ elem +'v"><select>').insertAfter('#' +elem + '_select_chzn');
 					for (var j=0; j < variants.length; j++) {
@@ -122,10 +122,10 @@ $(document).ready(function () {
 					
 					return false;  //had to throw this in to stop infinite loop
 				} else if(fontList[i].family === fontName) {
-					// console.log('yo1');
 					//do something else when there is only one variant
 					//adding plain stylesheet call w/ no variant addendum
-					$('<link rel="stylesheet" href="' + base + fontName.replace(/\s+/g, '+') +'&subset=latin" type="text/css"  />').appendTo('head');
+					//$("<link rel='stylesheet' href='" + base + fontName.replace(/\s+/g, '+') +"&subset=latin' type='text/css'/>").prependTo('head');
+					$('head style').after("<link rel='stylesheet' href='" + base + fontName.replace(/\s+/g, '+') +"&subset=latin' type='text/css'/>")
 					//get the chosen drop down to take on the css style
 					$("#" + elem + "_select_chzn .chzn-single").css('font-family', fontName);
 				}
@@ -166,7 +166,7 @@ $(document).ready(function () {
 		$('#h1_select_chzn .active-result, #h2_select_chzn .active-result, #p_select_chzn .active-result').each(function() {
 			$(this).css('font-family', $(this).html());
 		});
-		
+		$('.chzn-search input').css('width','72%');
 		$('#control_option').chosen();
 		$('#control_option_chzn').css('width','90%');
 		$('#control_option_chzn .chzn-drop').css('width', '100%');

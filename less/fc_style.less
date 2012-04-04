@@ -5,7 +5,7 @@
 
 @fullwidth: @pagewidth+40px;
 @spacing: 15px;  /*padding for elements*/
-@radius: .5em;
+@radius: 8px;
 
 @import 'reset.less';
 @import 'elements.less';
@@ -172,32 +172,11 @@ background: white;
 	padding: 5px 10px;
 	margin-top: @spacing;
 	margin-left: @spacing;
+	.rounded(@radius);
+	border: solid 1px white;
+	background: #ccc;
 }
 
-#hide_controls {
-	position:absolute;
-	display:block;
-	text-align: center;
-	line-height: 24px;
-	font-size: 2.5em;
-	text-decoration: none;
-	right: 20px;
-	top: 12px;
-	text-indent: 1px;
-	font-famliy: @sans-serif;
-	color: white;
-	width: 30px;
-	height: 30px;
-	.rounded(10%);
-	border: 1px solid white;
-	background: #7d7e7d; /* Old browsers */
-	background: -moz-linear-gradient(top, #7d7e7d 0%, #0e0e0e 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7d7e7d), color-stop(100%,#0e0e0e)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top, #7d7e7d 0%,#0e0e0e 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top, #7d7e7d 0%,#0e0e0e 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top, #7d7e7d 0%,#0e0e0e 100%); /* IE10+ */
-	background: linear-gradient(top, #7d7e7d 0%,#0e0e0e 100%); /* W3C */
-}
 
 
 /* @end */

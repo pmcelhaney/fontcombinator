@@ -70,7 +70,7 @@ ini_set('display_errors', 'on');
 <!--[if IE 8]>    <html lang="en-us" class="no-js ie8"> <![endif]-->
 <!--[if gt IE 8]><!--> <html lang="en-us" class="no-js"> <!--<![endif]-->
 <head>
-	<link href="http://fonts.googleapis.com/css?family=Ultra" rel="stylesheet" type="text/css">
+	
 	<meta charset="utf-8">
 	<meta name="HandheldFriendly" content="True">
  	<meta name="MobileOptimized" content="320">
@@ -155,8 +155,7 @@ ini_set('display_errors', 'on');
 		?>
 	}
 	</style>	
-</head>
-
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Ultra" type="text/css" />
 </head>
 <body>
 	<div id="wrapper">
