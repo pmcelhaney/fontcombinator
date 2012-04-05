@@ -186,6 +186,11 @@ p {
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
 }
+.panel a,
+.panel a:link,
+.panel a:visited {
+  color: inherit;
+}
 /* @end */
 /* @group Structure */
 body {
@@ -550,8 +555,10 @@ textarea {
     clear: none;
   }
   .element {
-    padding: 0 6px 0 0;
-    margin: 0 10px 0 15px;
+    /*padding:0 6px 0 0;*/
+  
+    /*margin:0 10px 0 @spacing;*/
+  
     width: auto;
   }
   #h1lh,
@@ -617,6 +624,12 @@ textarea {
     float: left;
     clear: none;
     margin-right: 15px;
+  }
+  select.variant_select {
+    display: none;
+  }
+  .no-js select.variant_select {
+    display: block;
   }
   .element {
     padding: 0 6px 0 0;

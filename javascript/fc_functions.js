@@ -243,7 +243,7 @@ $(document).ready(function () {
 			onChange: function(hsb, hex, rgb, el) {
 				$('#' + thisEl).val(hex);
 				$(el).ColorPickerHide();
-				$(thisElem).css('color', '#'+hex);
+				$('.panel ' + thisElem).css('color', '#'+hex);
 			},
 			onBeforeShow: function () {
 				$(this).ColorPickerSetColor(this.value);

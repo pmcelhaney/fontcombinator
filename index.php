@@ -1,6 +1,6 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 'on');
+// error_reporting(E_ALL);
+// ini_set('display_errors', 'on');
 ?>
 
 	<?php
@@ -171,9 +171,9 @@ ini_set('display_errors', 'on');
 	</div>
 	</section> <!-- end font-combinator -->
 	<section id="about" class="panel">
-		<h1>About stuff goes here</h1>
+		<h1>About</h1>
 		
-		<p>The Web Font Combinator was built for the classic reason of 'scratching my own itch'. I am a web designer/front end developer, and wanted to have a way to quickly see how fonts looked in combination.</p>
+		<p>The Web Font Combinator was built for the classic reason of &ldquo;scratching my own itch&rdquo;. I am a web designer/front end developer, and wanted to have a way to quickly see how fonts looked in combination.</p>
 		
 		<h2>Credits</h2>
 		<p>There are a number of technologies that make this tool possible, and I&rsquo;d like to give them credit:</p>
@@ -184,8 +184,12 @@ ini_set('display_errors', 'on');
 	</section>
 	<section id="change-log" class="panel">
 		<h1>Change Log</h1>
-		<h2>Version 1.0</h2>
-		<p>Total rewrite! lots of stuff going on here.</p>
+		<h2>Version 1.0 - April 4th, 2012</h2>
+		<p>Version 1.0 is a total rewrite of the font combinator - from the ground up! I&rsquo;ve been working on this for a few months - I wanted to bring some cool new features. Such as:</p>
+		<p><strong>Performance Enhancements</strong> - taking advantage of some of the intricacies of the Google Font API, page load should be a lot faster.</p>
+		<p><strong>Responsive Design</strong> - it&rsquo;s been designed to work on modern mobile devices through modern desktop browsers</p>
+		<p><strong>Font Variants!</strong> - this has been a popular request, and something I&rsquo;ve wanted for a long time. Now, if a font has variants, those are options.</p>
+		<p><strong>Color!</strong> - You can change type color AND the background color of the page!</p>
 	</section>	
 		</div> <!-- end of wrapper -->
 	<div id="nav_controls">
@@ -313,20 +317,20 @@ ini_set('display_errors', 'on');
 	<script src="javascript/chosen/chosen.jquery.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="javascript/colorpicker.js" type="text/javascript" charset="utf-8"></script>
 	
-	<script src="javascript/fc_functions.js" type="text/javascript" charset="utf-8"></script>
+	<script src="javascript/fc_functions-ck.js" type="text/javascript" charset="utf-8"></script>
 	<script src="javascript/html5slider.js" type="text/javascript" charset="utf-8"></script>
 	
 	<script type="text/javascript">
-	// TODO - reenable google analytics
-	  // var _gaq = _gaq || [];
-	  // 	  _gaq.push(['_setAccount', 'UA-22598536-1']);
-	  // 	  _gaq.push(['_trackPageview']);
-	  // 
-	  // 	  (function() {
-	  // 	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	  // 	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	  // 	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	  // 	  })();
+
+	  var _gaq = _gaq || [];
+	  	  _gaq.push(['_setAccount', 'UA-22598536-1']);
+	  	  _gaq.push(['_trackPageview']);
+	  
+	  	  (function() {
+	  	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	  	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	  	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  	  })();
 
 	</script>	
 </body>
