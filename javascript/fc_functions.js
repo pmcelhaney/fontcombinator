@@ -72,7 +72,7 @@ $(document).ready(function () {
 			//gets rid of any variant drop down added previously
 			$(this).siblings('.variant_select').remove();
 			$('#'+ elem + '_variant_chzn').remove();
-			
+			_gaq.push(['_trackEvent','Font Choice', elem, fontName]);
 			
 			//this for loop adding variants based on which font is selected
 			for (var i=0; i < fontList.length; i++) {
@@ -81,7 +81,6 @@ $(document).ready(function () {
 				//checking to see if the selected font has more than one variant
 				if(fontList[i].family === fontName && variants.length > 1) {
 					var variantCall = variants.toString();
-					// console.log('yo');
 					//adding stylesheet call with all variants
 					$('<link rel="stylesheet" href="' + base + fontName.replace(/\s+/g, '+') +':' + variantCall + '&subset=latin" type="text/css" />').prependTo('head');
 					//create a drop down menu

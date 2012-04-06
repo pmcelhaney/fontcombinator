@@ -78,7 +78,7 @@
  	<meta name="apple-mobile-web-app-capable" content="yes">
  
 
-	<title>The Web Font Combinator</title>
+	<title>The Web Font Combinator | A Web Typography Tool</title>
 	
 
 
@@ -166,7 +166,7 @@
 			<h2 id="h2_text" contenteditable="true">A Web Typography Tool</h2>
 			<div id="p_text" contenteditable="true">
 				<p>This tool has been built to allow previewing of font combinations in a <em>fast, browser-based</em> manner. There have been numerous printed books through the years that allowed a designer to put a headline font next to a body font, and this is an attempt to recreate that for the web.</p>
-				<p><strong>Directions:</strong> You can edit any of the type on this page in order to preview any particular text. In the controls at the top, select the element you want to modify, and then <em>play!</em> You can change the font, size, line height and color of an element, as well as hide an element altogether.</p>
+				<p><strong>Directions:</strong> You can edit any of the type on this page in order to preview any particular text. In the controls at the bottom, select the element you want to modify, and then <em>play!</em> You can change the font, size, line height and color of an element, as well as hide an element altogether.</p>
 			</div>	
 	</div>
 	</section> <!-- end font-combinator -->
