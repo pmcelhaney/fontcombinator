@@ -301,7 +301,7 @@
 	<div class="footer_wrapper">
 
 	<footer class="clearfix">
-		<p>&copy; <?php echo date("Y") ?> <a href="http://chipcullen.com/" rel="external">Chip Cullen</a> | <a href="https://twitter.com/#!/chipcullen" rel="external">Follow me on Twitter!</a></p>
+		<p>&copy; <?php echo date("Y") ?> <a href="http://chipcullen.com/" rel="external">Chip Cullen</a> | <a href="https://twitter.com/#!/chipcullen" rel="external">Follow me on Twitter!</a> | <a href="https://github.com/chippper/fontcombinator" rel="external">GitHub</a></p>
 		<nav>
 			<ul id="panel_nav">
 					<li><a href="#font-combinator" class="here">Font Combinator</a></li>
